@@ -7,10 +7,17 @@ class RoomChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
+  def start_listening(data)
+    stop_all_streams
+    stream_for Room.find(data['room_id'])
+  end
+
   def submit_answer(data)
     @player = Player.find(data["id"])
     @player.select_answer(data["selected"].to_i)
-    Room.find(@player.room_id).check_if_ready
-    ActionCable.server.broadcast "room_channel", selected: data["selected"]
+    @room = Room.find(@player.room_id)
+    @room.check_if_ready
+    RoomChannel.broadcast_to(@room, selected: data["selected"])
+    # ActionCable.server.broadcast "room_channel_#{@room.id}", selected: data["selected"]
   end
 end
