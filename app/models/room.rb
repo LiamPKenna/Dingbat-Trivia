@@ -15,5 +15,11 @@ class Room < ApplicationRecord
     q_arr = self.questions.split(',')
     self.current_question = q_arr.shift.to_i
     self.questions = q_arr.join(',')
+    self.save
+  end
+
+  def get_question_list
+    self.questions = Question.random.map { |q| q["id"] }.join(',')
+    self.save
   end
 end
