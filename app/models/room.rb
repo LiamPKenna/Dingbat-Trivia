@@ -22,4 +22,9 @@ class Room < ApplicationRecord
     self.questions = Question.random.map { |q| q["id"] }.join(',')
     self.save
   end
+
+  def check_if_ready
+    self.ready_for_next = self.players.all? { |p| p.current_answer != 0 }
+    self.save
+  end
 end
