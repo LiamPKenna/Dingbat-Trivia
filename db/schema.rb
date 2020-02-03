@@ -18,10 +18,19 @@ ActiveRecord::Schema.define(version: 2020_02_03_171031) do
   create_table "players", force: :cascade do |t|
     t.integer "room_id"
     t.string "name"
-    t.integer "score"
-    t.integer "current_answer"
+    t.integer "score", default: 0
+    t.integer "current_answer", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "question"
+    t.integer "correct_answer"
+    t.string "answer_1"
+    t.string "answer_2"
+    t.string "answer_3"
+    t.string "answer_4"
   end
 
   create_table "rooms", force: :cascade do |t|
