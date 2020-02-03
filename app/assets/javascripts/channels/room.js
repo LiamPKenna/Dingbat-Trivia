@@ -8,6 +8,7 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
   },
 
   received: function(data) {
+    alert(data['selected'])
     // Called when there's incoming data on the websocket for this channel
   },
 

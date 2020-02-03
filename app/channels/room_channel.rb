@@ -1,6 +1,6 @@
 class RoomChannel < ApplicationCable::Channel
   def subscribed
-    # stream_from "some_channel"
+    stream_from "room_channel"
   end
 
   def unsubscribed
@@ -9,7 +9,8 @@ class RoomChannel < ApplicationCable::Channel
 
   def submit_answer(data)
     @player = Player.find(data["id"])
-    @player.current_answer = data["selected"].to_i
-    binding.pry
+    @player.select_answer(data["selected"].to_i)
+    Room.find(@player.room_id).check_if_ready
+    ActionCable.server.broadcast "room_channel", selected: data["selected"]
   end
 end
