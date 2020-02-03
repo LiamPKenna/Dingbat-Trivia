@@ -8,5 +8,8 @@ class RoomChannel < ApplicationCable::Channel
   end
 
   def submit_answer(data)
+    @player = Player.find(data["id"])
+    @player.current_answer = data["selected"].to_i
+    binding.pry
   end
 end

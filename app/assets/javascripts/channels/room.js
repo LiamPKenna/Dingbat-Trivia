@@ -11,7 +11,7 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
     // Called when there's incoming data on the websocket for this channel
   },
 
-  submit_answer: function() {
-    return this.perform('submit_answer');
+  submit_answer: function(data) {
+    return this.perform('submit_answer', data);
   }
 });
