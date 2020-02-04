@@ -1,2 +1,7 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<script type='text/jscript'>
+    sampleQuestion = new Question(
+    'What if this question is pretty long and we run out of room on the page? Uh oh. WAAAAAAY longer lets see if this shit works yee haw',
+    ['Red', 'Blue', 'Green', 'Yellow']
+    );
+    $('body').append(playerView('Jaime', <%= @player.id %>, sampleQuestion));
+</script>
