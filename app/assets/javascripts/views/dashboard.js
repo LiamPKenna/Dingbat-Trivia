@@ -1,7 +1,6 @@
 const dashboardMain = () => {
     return(
         `
-        <link rel='stylesheet' href='styles.css'>
         <main>
             <div id='player-column-1'>
             </div>

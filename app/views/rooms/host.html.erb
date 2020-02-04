@@ -1,33 +1,62 @@
 <style>
-    main {
-        width: 100%;
-        height: 100%;
-        display: grid;
-        grid-template-columns: 1fr 3fr 1fr;
-    }
-    main > * {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    }
+  main {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+  }
+  main > * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
 </style>
+<main>
+  <div id='player-column-1'>
+  </div>
+  <div id='main-display'>
+    <div id='info-display'>
+    </div>
+    <div id='question-display'>
+      <h2>Waiting for question...</h2>
+    </div>
+    <ul id='update-display'>
+    </ul>
+  </div>
+  <div id='player-column-2'>
+  </div>
+</main>
 <script>
-    $(document).ready(function() {
-        const roomID = <%= @room.id %>
-        setTimeout(function () {
-            App.host.host(parseInt(roomID));
-        }, 1000);
+  $(document).ready(function() {
+    const roomID = <%= @room.id %>;
+    setTimeout(function () {
+      App.host.host(parseInt(roomID));
+    }, 1000);
 
-        demoDashboardView();
-        sendUpdate('Started Lobby!');
-        addDashboardPlayerPortrait(new Player(4, "Jason", 0), 1)
-        addDashboardPlayerPortrait(new Player(5, "Jason", 0), 2)
-        addDashboardPlayerPortrait(new Player(5, "Jason", 0), 3)
-        addDashboardPlayerPortrait(new Player(5, "Jason", 0), 4)
-        addDashboardPlayerPortrait(new Player(5, "Jason", 0), 5)
-        addDashboardPlayerPortrait(new Player(5, "Jason", 0), 6)
-        addDashboardPlayerPortrait(new Player(5, "Jason", 0), 7)
-        addDashboardPlayerPortrait(new Player(5, "Jason", 0), 8)
-    });
+    // demoDashboardView();
+    <% if @room.players.any? %>
+    <% @room.players.each_with_index do |p, i| %>
+    addDashboardPlayerPortrait(
+      new Player(
+        <%= p.id %>,
+        '<%= p.name %>',
+        0
+      ),
+      <%= i %>
+    )
+    <% end %>
+    <% end %>
+
+    sendUpdate('Started Lobby!');
+
+    // addDashboardPlayerPortrait(new Player(4, "Jason", 0), 1)
+    // addDashboardPlayerPortrait(new Player(5, "Jason", 0), 2)
+    // addDashboardPlayerPortrait(new Player(5, "Jason", 0), 3)
+    // addDashboardPlayerPortrait(new Player(5, "Jason", 0), 4)
+    // addDashboardPlayerPortrait(new Player(5, "Jason", 0), 5)
+    // addDashboardPlayerPortrait(new Player(5, "Jason", 0), 6)
+    // addDashboardPlayerPortrait(new Player(5, "Jason", 0), 7)
+    // addDashboardPlayerPortrait(new Player(5, "Jason", 0), 8)
+  });
 </script>

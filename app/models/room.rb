@@ -44,6 +44,14 @@ class Room < ApplicationRecord
       })
     end
 
+    def push_player(this_player)
+      HostChannel.broadcast_to("room_host_#{self.id}", player: {
+        "id": this_player.id,
+        "name": this_player.name,
+        "count": self.players.length
+      })
+    end
+
     def wait(seconds)
       i = 0
       while i < seconds
@@ -56,6 +64,15 @@ class Room < ApplicationRecord
       self.players.each do |player|
         player.score = 0
         player.save
+      end
+    end
+
+    def updateScores
+      self.players.each do |player|
+        HostChannel.broadcast_to("room_host_#{self.id}", update_score: {
+          "id": player.id,
+          "score": player.score,
+        })
       end
     end
 
@@ -78,6 +95,7 @@ class Room < ApplicationRecord
         HostChannel.broadcast_to("room_host_#{self.id}", correct_answer: @question["answer_#{@question.correct_answer}"])
         wait(4)
         @correct = self.check_player_answers(@question.correct_answer)
+        updateScores()
         # show correct
         # show scores
       end
