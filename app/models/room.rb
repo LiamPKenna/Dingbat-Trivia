@@ -51,4 +51,23 @@ class Room < ApplicationRecord
       puts i
     end
   end
+
+  def start_game
+    self.get_question_list
+    8.times  do
+      self.next_question
+      @question = Question.find(self.current_question)
+      self.ask_question
+      i = 0
+      while !self.ready_for_next && i > 10
+        sleep 1
+        i += 1
+      end
+      # reveal
+      @correct = self.check_player_answers(@question.correct_answer)
+      # show correct
+      # show scores
+    end
+    # winner
+  end
 end
