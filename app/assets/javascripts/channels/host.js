@@ -11,9 +11,18 @@ App.host = App.cable.subscriptions.create("HostChannel", {
     if (data["selected"]) {
       // alert(data['selected'])
     } else if (data["question"]) {
+      sendMainText(`Question: ${data["question"]}`);
       console.log(data["question"]);
     } else if (data["correct_answer"]){
+      sendMainText(`Correct Answer: ${data["correct_answer"]}`);
       console.log(data["correct_answer"]);
+    } else if (data["player"]) {
+      addDashboardPlayerPortrait(new Player(
+        data["player"]["id"],
+        data["player"]["name"],
+        0), data["player"]["count"])
+    } else if (data["update_score"]) {
+      updatePlayerScore(data["update_score"]["id"], data["update_score"]["score"])
     }
 
     // Called when there's incoming data on the websocket for this channel
