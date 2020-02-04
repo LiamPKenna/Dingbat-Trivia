@@ -20,4 +20,10 @@ class RoomChannel < ApplicationCable::Channel
     RoomChannel.broadcast_to(@room, selected: data["selected"])
     RoomChannel.broadcast_to("room_host_#{@room.id}", selected: data["id"])
   end
+
+  def start_game(data)
+    @room = Room.find(data["room_id"])
+    RoomChannel.broadcast_to(@room, blank: true)
+    @room.start_game
+  end
 end

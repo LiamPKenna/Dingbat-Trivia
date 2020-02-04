@@ -15,6 +15,10 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
       const answers = hashToArray(data["answers"])
       addPlayerAnswers(answers, playerID)
     }
+    if (data['blank']) {
+      $('#waiting').remove();
+      $('#question-form').remove();
+    }
   },
 
   submit_answer: function(data) {
@@ -25,7 +29,7 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
     App.room.perform("start_listening", {room_id: room_id});
   },
 
-  host: function(room_id) {
-    App.room.perform("start_hosting", {room_id: room_id});
+  start_game: function(room_id) {
+    App.room.perform("start_game", {room_id: room_id});
   }
 });
