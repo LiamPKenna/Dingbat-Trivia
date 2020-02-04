@@ -41,39 +41,48 @@ class Room < ApplicationRecord
       a2: @question.answer_2,
       a3: @question.answer_3,
       a4: @question.answer_4
-    })
-  end
-
-  def wait(seconds)
-    i = 0
-    while i < seconds
-      sleep 1
-      i += 1
+      })
     end
-  end
 
-  def start_game
-    self.get_question_list
-    8.times  do
-      self.next_question
-      @question = Question.find(self.current_question)
-      self.ask_question
-      self.ready_for_next = false
+    def wait(seconds)
       i = 0
-      while (self.ready_for_next == false) && (i < 10)
+      while i < seconds
         sleep 1
         i += 1
       end
-      RoomChannel.broadcast_to(self, blank: true)
-      self.ready_for_next = false
-      wait(1)
-      HostChannel.broadcast_to("room_host_#{self.id}", correct_answer: @question["answer_#{@question.correct_answer}"])
-      wait(4)
-      @correct = self.check_player_answers(@question.correct_answer)
-      # show correct
-      # show scores
     end
-    RoomChannel.broadcast_to(self, blank: true)
-    # winner
+
+    def reset_players
+      self.players.each do |player|
+        player.score = 0
+        player.save
+      end
+    end
+
+    def start_game
+      reset_players
+      self.get_question_list
+      8.times  do
+        next_question()
+        @question = Question.find(self.current_question)
+        ask_question()
+        self.ready_for_next = false
+        i = 0
+        while (self.ready_for_next == false) && (i < 10)
+          sleep 1
+          i += 1
+        end
+        RoomChannel.broadcast_to(self, blank: true)
+        self.ready_for_next = false
+        wait(1)
+        HostChannel.broadcast_to("room_host_#{self.id}", correct_answer: @question["answer_#{@question.correct_answer}"])
+        wait(4)
+        @correct = self.check_player_answers(@question.correct_answer)
+        # show correct
+        # show scores
+      end
+      RoomChannel.broadcast_to(self, blank: true)
+
+      # winner
+    end
   end
-end
