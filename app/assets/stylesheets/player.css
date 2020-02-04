@@ -31,7 +31,7 @@
     font-size: 3.5vh;
     border-radius: 10vh;
 
-    border: 5px solid black;
+    border: 4px solid black;
     background-color: rgba(255, 255, 255, 0.8);
     color: black;
 }
@@ -60,7 +60,7 @@
     display: none;
 }
 
-#question-form button {
+#go {
     height: 20vh;
     width: 20vh;
     font-size: 10vh;
@@ -75,35 +75,37 @@
     border: 5px solid white;
     box-shadow: 0 0 1px 5px black;
 }
-#waiting {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+
+
+
+#start-game {
+    position: absolute;
+    top: 45vh;
+    left: 10vw;
+    height: 15vh;
+    width: 80vw;
+    font-size: 5vh;
+    line-height: 5vh;
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 5vh;
+    border-bottom: 1rem solid #2b2b2b;
+    box-sizing: content-box;
 }
-#waiting h2 {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.75);
-    display: inline-block;
-    padding: 1.5rem;
-    border-radius: 100vh;
-    font-size: 6vh;
-    justify-content: center;
-    align-items: center;
+#start-game:hover, #start-game:active {
+    border-bottom: 0.5rem solid #2b2b2b;
+    margin-top: 0.5rem;
 }
 
-/* #dot1, #dot2, #dot3 { opacity: 0; animation: 1500ms blink linear infinite;}
-#dot1 {
-    animation-delay: 500ms;
+#start-game p {
+    font-weight: bold;
+    background-size: 300% auto;
+    background-position: left;
+    animation: prettyText 2s linear infinite;
+    color: transparent;
+    -webkit-background-clip: text;
 }
-#dot2 {
-    animation-delay: 1000ms;
+
+@keyframes prettyText {
+    to {background-position: right;}
 }
-#dot3{
-    animation-delay: 1500ms;
-}
-@keyframes blink {
-    0%  {opacity: 1;}
-    50% {opacity: 1;}
-    51% {opacity: 0;}
-    100% {opacity: 0;}
-} */
