@@ -1,0 +1,81 @@
+#info-display {
+    height:20%;
+    background-color: green;
+}
+#question-display {
+    height:45%;
+    width:100%;
+    background-color: green;
+    overflow: auto;
+}
+#update-display {
+    height: 35%;
+    background-color: green;
+    list-style-type: none;
+    padding:0;
+    width:100%;
+    overflow: auto;
+}
+#update-display li {
+    font-size: 3.5vh;
+    line-height: 4vh;
+    opacity: 0;
+    animation: 8s updateFade linear 1;
+}
+@keyframes updateFade {
+    0%, 50% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+#player-column-1, #player-column-2 {
+    justify-content: space-around;
+}
+
+
+#player-column-1 > div:nth-child(odd), #player-column-2 > div:nth-child(even) {
+    animation: 20s wiggle1 linear infinite;
+}
+#player-column-1 > div:nth-child(even), #player-column-2 > div:nth-child(odd) {
+    animation: 20s wiggle2 linear infinite;
+}
+#player-column-1 > div:nth-child(odd) > div, #player-column-2 > div:nth-child(even) > div{
+    transform: rotateZ(5deg);
+}
+#player-column-1 > div:nth-child(even) > div, #player-column-2 > div:nth-child(odd) > div {
+    transform: rotateZ(-5deg);
+}
+
+@keyframes wiggle1 {
+    0%, 100% {transform: rotateZ(-8deg);}
+    50% {transform: rotateZ(8deg);}
+}
+@keyframes wiggle2 {
+    0%, 100% {transform: rotateZ(8deg);}
+    50% {transform: rotateZ(-8deg);}
+}
+
+
+.player-portrait {
+    height: 20vh;
+    width:  15vw;
+    text-align: center;
+    background-color: rgba(173,216,230, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.player-portrait div {
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border: 3px solid black;
+}
+
+.player-portrait h2 {
+    font-size:4vh;
+}
+
+.player-portrait p {
+    font-size:3vh;
+    font-weight:bold;
+}

@@ -1,17 +1,33 @@
-
-<button id="test" type="button" name="button">TEST</button>
-<h1>Rooms#host</h1>
-<p>Find me in app/views/rooms/host.html.erb</p>
+<style>
+    main {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+    main > * {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+</style>
 <script>
-  $(document).ready(function() {
-    const roomID = <%= @room.id %>
-    setTimeout(function () {
-      App.host.host(parseInt(roomID));
-    }, 1000);
+    $(document).ready(function() {
+        const roomID = <%= @room.id %>
+        setTimeout(function () {
+            App.host.host(parseInt(roomID));
+        }, 1000);
 
-    $("#test").click(function () {
-      App.host.ask(parseInt(roomID));
-    })
-  })
-
+        demoDashboardView();
+        sendUpdate('Started Lobby!');
+        addDashboardPlayerPortrait(new Player(4, "Jason", 0), 1)
+        addDashboardPlayerPortrait(new Player(5, "Jason", 0), 2)
+        addDashboardPlayerPortrait(new Player(5, "Jason", 0), 3)
+        addDashboardPlayerPortrait(new Player(5, "Jason", 0), 4)
+        addDashboardPlayerPortrait(new Player(5, "Jason", 0), 5)
+        addDashboardPlayerPortrait(new Player(5, "Jason", 0), 6)
+        addDashboardPlayerPortrait(new Player(5, "Jason", 0), 7)
+        addDashboardPlayerPortrait(new Player(5, "Jason", 0), 8)
+    });
 </script>
