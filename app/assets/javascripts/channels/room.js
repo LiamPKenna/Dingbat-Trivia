@@ -15,8 +15,12 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
   submit_answer: function(data) {
     return this.perform('submit_answer', data);
   },
-  
+
   hook_up: function(room_id) {
     App.room.perform("start_listening", {room_id: room_id});
+  },
+
+  host: function(room_id) {
+    App.room.perform("start_hosting", {room_id: room_id});
   }
 });
