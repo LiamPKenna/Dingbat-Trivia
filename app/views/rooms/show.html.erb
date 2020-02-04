@@ -43,17 +43,17 @@
             App.room.hook_up(parseInt(roomID));
         }, 1000);
 
-        $('#start-game').click(() => {
-            App.room.start_game(roomID);
-            $('#start-game').remove();
-        });
+      $('#start-game').click(() => {
+          App.room.start_game(roomID);
+          $('#start-game').remove();
+      });
 
-        $("main").on('click', "#go", function(event) {
-            alert('selected');
-            event.preventDefault();
-            const selected = parseInt($('input:radio[name=player-answer]:checked').val());
-            App.room.submit_answer({"id":playerID, "selected":selected});
-            removePlayerQuestion();
-        });
+      $("main").on('click', "#go", function(event) {
+          event.preventDefault();
+          const selected = parseInt($('input:radio[name=player-answer]:checked').val());
+          App.room.submit_answer({"id":playerID, "selected":selected});
+          removePlayerQuestion();
+      });
+
     });
 </script>
