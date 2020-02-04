@@ -8,7 +8,12 @@ App.host = App.cable.subscriptions.create("HostChannel", {
   },
 
   received: function(data) {
-    alert(data['selected'])
+    if (data["selected"]) {
+      alert(data['selected'])
+    } else if (data["question"]) {
+      console.log(data["question"]);
+    }
+
     // Called when there's incoming data on the websocket for this channel
   },
 
@@ -18,5 +23,9 @@ App.host = App.cable.subscriptions.create("HostChannel", {
 
   host: function(room_id) {
     App.host.perform("start_hosting", {room_id: room_id});
+  },
+
+  ask: function(room_id) {
+    App.host.perform("ask_question", {room_id: room_id});
   }
 });
