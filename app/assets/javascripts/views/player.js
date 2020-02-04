@@ -1,31 +1,22 @@
-class Question {
-    constructor(questionText, questionOptions) {
-        this.text = questionText;
-        this.options = questionOptions;
-    }
-}
-
-const playerViewQuestion = (questionOptions, playerID) => {
+const playerQuestion = (questionOptions, playerID) => {
     return (
         `
-        <main>
-            <form id='question-form'>
-                <div id='input-options'>
-                    ${
-                        questionOptions.map(
-                            (option, index) => {
-                                return playerViewQuestionLabel(option, index, playerID);
-                            }
-                        ).join('\n')
+        <form id='question-form'>
+            <div id='input-options'>
+            ${
+                questionOptions.map(
+                    (option, index) => {
+                        return playerQuestionLabel(option, index, playerID);
                     }
-                </div>
-                <button type='submit'>Go!</button>
-            </form>
-        </main>
+                ).join('\n')
+            }
+            </div>
+            <button type='submit'>Go!</button>
+        </form>
         `
     );
 }
-const playerViewQuestionLabel = (text, index, playerID) => {
+const playerQuestionLabel = (text, index, playerID) => {
     return (
         `
         <label class='radio-button'>
@@ -35,44 +26,33 @@ const playerViewQuestionLabel = (text, index, playerID) => {
         `
     );
 }
-
-const playerViewStyles = (playerName) => {
-    const randColor = () => {
-        return Math.floor(Math.random() * 255)
-    }
-    colors = [randColor(), randColor(), randColor()]
-
+const playerWaiting = () => {
     return (
         `
-        <style id='player-view-styles'>
-            body {
-                background-image:
-                    linear-gradient(
-                        rgba(${colors[0]}, ${colors[1]}, ${colors[2]}, 0.65),
-                        rgba(${colors[0]}, ${colors[1]}, ${colors[2]}, 0.65)
-                    );
-            }
-            main {
-                width: 80%;
-                margin: 0 auto;
-            }
-            #player-header h1 {
-                font-size: ${12 - 0.4*(playerName.length)}vh;
-                line-height: ${12 - 0.4*(playerName.length)}vh;
-            }
-        </style>
+        <div id='waiting'>
+            <h2>
+                Waiting for next question<span id=dot1>.</span><span id=dot2>.</span><span id=dot3>.</span>
+            </h2>
+        </div>
         `
     );
 }
-const demoPlayerView = (playerName, playerID) => {
-    sampleQuestion = new Question(
-        'What\'s the best color?',
-        ['Red', 'Blue', 'Green', 'Yellow']
-    );
-    $('body').append(
-        `
-        ${playerViewStyles(playerName)}
-        ${playerViewQuestion(sampleQuestion.options, playerID)}
-         `
-    );
+
+//verbs
+const demoPlayerQuestion = (playerName, playerID) => {
+    sampleOptions = ['Red', 'Blue', 'Green', 'Yellow'];
+    $('main').append( playerQuestion(sampleOptions, playerID) );
+}
+
+const removePlayerQuestion = () => {
+    $('#question-form').remove();
+    $('main').append(playerWaiting());
+}
+const addPlayerQuestion = (questionOptions, playerID) => {
+    $('#waiting').remove();
+    $('main').append( playerQuestion(questionOptions, playerID) );
+}
+
+function hashToArray(hash) {
+    return [hash['a1'], hash['a2'], hash['a3'], hash['a4']];
 }

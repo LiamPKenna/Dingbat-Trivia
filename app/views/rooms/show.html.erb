@@ -1,6 +1,30 @@
+<style>
+    <% colors = [rand(0..255), rand(0..255), rand(0..255)] %>
+    body {
+        background-image:
+        linear-gradient(
+        rgba(<%= colors[0] %>, <%= colors[1] %>, <%= colors[2] %>, 0.65),
+        rgba(<%= colors[0] %>, <%= colors[1] %>, <%= colors[2] %>, 0.65)
+        );
+    }
+    main {
+        width: 80%;
+        margin: 0 auto;
+    }
+    #player-header h1 {
+        font-size: <%= 12 - 0.4*(@player.name.length) %>vh;
+        line-height: <%= 12 - 0.4*(@player.name.length) %>vh;
+    }
+</style>
+
 <header id='player-header'>
     <h1><%= @player.name %></h1>
 </header>
+
+<main>
+</main>
+
 <script type='text/jscript'>
-    demoPlayerView('<%= @player.name %>', <%= @player.id %>);
+    demoPlayerQuestion('<%= @player.name %>', <%= @player.id %>);
+    removePlayerQuestion();
 </script>

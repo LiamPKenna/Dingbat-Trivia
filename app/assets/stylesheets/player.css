@@ -75,3 +75,35 @@
     border: 5px solid white;
     box-shadow: 0 0 1px 5px black;
 }
+#waiting {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#waiting h2 {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: inline-block;
+    padding: 1.5rem;
+    border-radius: 100vh;
+    font-size: 6vh;
+    justify-content: center;
+    align-items: center;
+}
+
+/* #dot1, #dot2, #dot3 { opacity: 0; animation: 1500ms blink linear infinite;}
+#dot1 {
+    animation-delay: 500ms;
+}
+#dot2 {
+    animation-delay: 1000ms;
+}
+#dot3{
+    animation-delay: 1500ms;
+}
+@keyframes blink {
+    0%  {opacity: 1;}
+    50% {opacity: 1;}
+    51% {opacity: 0;}
+    100% {opacity: 0;}
+} */
