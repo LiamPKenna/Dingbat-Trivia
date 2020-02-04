@@ -1,15 +1,12 @@
 <script>
   const roomID = <%= @room.id %>
   $(document).ready(function() {
-    console.log("test");
-    $("#hed").text("HEY!!!")
     setTimeout(function () {
-      console.log(roomID);
-      App.room.host(parseInt(roomID));
+      App.host.host(parseInt(roomID));
     }, 1000);
   })
 
 </script>
 
-<h1 id="hed">Rooms#host</h1>
+<h1>Rooms#host</h1>
 <p>Find me in app/views/rooms/host.html.erb</p>
