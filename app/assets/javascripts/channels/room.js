@@ -8,9 +8,9 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
   },
 
   received: function(data) {
-    if (data['selected']) {
-      alert(data['selected'])
-    }
+    // if (data['selected']) {
+    //   alert(data['selected'])
+    // }
     if (data['answers']) {
       const answers = hashToArray(data["answers"])
       addPlayerAnswers(answers, playerID)

@@ -35,7 +35,6 @@
     }, 1000);
 
     $("main").on('click', "#go", function(event) {
-      alert('selected');
       event.preventDefault();
       const selected = parseInt($('input:radio[name=playerAnswer]:checked').val());
       App.room.submit_answer({"id":playerID, "selected":selected});
