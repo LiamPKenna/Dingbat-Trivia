@@ -16,6 +16,7 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
       addPlayerAnswers(answers, playerID)
     }
     if (data['blank']) {
+      $('#start-game').remove();
       $('#waiting').remove();
       $('#question-form').remove();
     }

@@ -9,9 +9,11 @@ App.host = App.cable.subscriptions.create("HostChannel", {
 
   received: function(data) {
     if (data["selected"]) {
-      alert(data['selected'])
+      // alert(data['selected'])
     } else if (data["question"]) {
       console.log(data["question"]);
+    } else if (data["correct_answer"]){
+      console.log(data["correct_answer"]);
     }
 
     // Called when there's incoming data on the websocket for this channel
