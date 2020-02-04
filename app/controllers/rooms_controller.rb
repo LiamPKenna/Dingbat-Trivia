@@ -14,7 +14,6 @@ class RoomsController < ApplicationController
   end
 
   def host
-
     @room = Room.find(params[:room_id])
   end
 
@@ -30,6 +29,7 @@ class RoomsController < ApplicationController
       updated_params[:room_id] = params[:player][:room_id]
       @player = Player.create!(updated_params)
       HostChannel.broadcast_to("room_host_#{@room.id}", selected: "New player: #{@player.name}")
+      @room.push_player(@player)
       redirect_to "/rooms/#{@room.id}/players/#{@player.id}"
     else
       render :join
