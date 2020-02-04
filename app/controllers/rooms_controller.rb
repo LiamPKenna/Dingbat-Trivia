@@ -27,7 +27,6 @@ class RoomsController < ApplicationController
     if @room
       updated_params = player_params
       updated_params[:room_id] = params[:player][:room_id]
-      binding.pry
       @player = Player.create!(updated_params)
       redirect_to "/rooms/#{@room.id}/players/#{@player.id}"
     else
