@@ -20,20 +20,9 @@ const playerQuestionLabel = (text, index, playerID) => {
     return (
         `
         <label class='radio-button'>
-            <input type='radio' name='playerAnswer' player-id="${playerID}" value='${index + 1}'>
+            <input type='radio' name='player-answer' value='${index + 1}'>
             <p class='option-text'>${text}</p>
         </label>
-        `
-    );
-}
-const playerWaiting = () => {
-    return (
-        `
-        <div id='waiting'>
-            <h2>
-                Waiting for next question<span id=dot1>.</span><span id=dot2>.</span><span id=dot3>.</span>
-            </h2>
-        </div>
         `
     );
 }
@@ -46,11 +35,9 @@ const demoPlayerQuestion = (playerName, playerID) => {
 
 const removePlayerQuestion = () => {
     $('#question-form').remove();
-    $('main').append(playerWaiting());
 }
 const addPlayerAnswers = (answers, playerID) => {
-    $('#waiting').remove();
-    $('#question-form').remove();
+    removePlayerQuestion();
     $('main').append( playerQuestion(answers, playerID) );
 }
 
