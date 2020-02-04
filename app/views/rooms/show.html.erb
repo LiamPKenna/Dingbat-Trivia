@@ -1,10 +1,9 @@
 <style>
     <% colors = [rand(0..255), rand(0..255), rand(0..255)] %>
     body {
-        background-image:
-        linear-gradient(
-        rgba(<%= colors[0] %>, <%= colors[1] %>, <%= colors[2] %>, 0.65),
-        rgba(<%= colors[0] %>, <%= colors[1] %>, <%= colors[2] %>, 0.65)
+        background-image: linear-gradient(
+            rgba(<%= colors[0] %>, <%= colors[1] %>, <%= colors[2] %>, 0.65),
+            rgba(<%= colors[0] %>, <%= colors[1] %>, <%= colors[2] %>, 0.65)
         );
     }
     main {
@@ -16,11 +15,12 @@
         line-height: <%= 12 - 0.4*(@player.name.length) %>vh;
     }
     #start-game p {
-        background-image: linear-gradient(to right,
-        rgba(<%= colors[0] %>, <%= colors[1] %>, <%= colors[2] %>, 0.5),
-        rgba(255, 255, 255, 0.8),
-        rgba(<%= colors[0] %>, <%= colors[1] %>, <%= colors[2] %>, 0.5),
-        rgba(255, 255, 255, 0.8)
+        background-image: linear-gradient(
+            to right,
+            rgb(<%= [colors[0] + 10, 255].min %>, <%= [colors[1] + 10, 255].min %>, <%= [colors[2] + 10, 255].min %>),
+            rgb(<%= [colors[0] - 80, 0].max %>, <%= [colors[1] - 80, 0].max %>, <%= [colors[2] - 80, 0].max %>),
+            rgb(<%= [colors[0] + 10, 255].min %>, <%= [colors[1] + 10, 255].min %>, <%= [colors[2] + 10, 255].min %>),
+            rgb(<%= [colors[0] - 80, 0].max %>, <%= [colors[1] - 80, 0].max %>, <%= [colors[2] - 80, 0].max %>)
         );
     }
 </style>

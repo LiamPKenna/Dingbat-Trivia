@@ -87,8 +87,14 @@
     width: 80vw;
     font-size: 5vh;
     line-height: 5vh;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(255, 255, 255, 0.75);
     border-radius: 5vh;
+    border-bottom: 1rem solid #2b2b2b;
+    box-sizing: content-box;
+}
+#start-game:hover, #start-game:active {
+    border-bottom: 0.5rem solid #2b2b2b;
+    margin-top: 0.5rem;
 }
 
 #start-game p {
