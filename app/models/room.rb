@@ -27,4 +27,17 @@ class Room < ApplicationRecord
     self.ready_for_next = self.players.all? { |p| p.current_answer != 0 }
     self.save
   end
+
+  def ask_question
+
+  end
+
+  def wait(seconds)
+    i = 0
+    while i < seconds
+      sleep 1
+      i += 1
+      puts i
+    end
+  end
 end
