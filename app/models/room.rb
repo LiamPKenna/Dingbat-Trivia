@@ -34,13 +34,14 @@ class Room < ApplicationRecord
       self.next_question
     end
     @question = Question.find(self.current_question)
+    HostChannel.broadcast_to("room_host_#{self.id}", question: @question.question)
+    wait(3)
     RoomChannel.broadcast_to(self, answers: {
       a1: @question.answer_1,
       a2: @question.answer_2,
       a3: @question.answer_3,
       a4: @question.answer_4
     })
-    HostChannel.broadcast_to("room_host_#{self.id}", question: @question.question)
   end
 
   def wait(seconds)
@@ -48,7 +49,6 @@ class Room < ApplicationRecord
     while i < seconds
       sleep 1
       i += 1
-      puts i
     end
   end
 
@@ -58,16 +58,22 @@ class Room < ApplicationRecord
       self.next_question
       @question = Question.find(self.current_question)
       self.ask_question
+      self.ready_for_next = false
       i = 0
-      while !self.ready_for_next && i > 10
+      while (self.ready_for_next == false) && (i < 10)
         sleep 1
         i += 1
       end
-      # reveal
+      RoomChannel.broadcast_to(self, blank: true)
+      self.ready_for_next = false
+      wait(1)
+      HostChannel.broadcast_to("room_host_#{self.id}", correct_answer: @question["answer_#{@question.correct_answer}"])
+      wait(4)
       @correct = self.check_player_answers(@question.correct_answer)
       # show correct
       # show scores
     end
+    RoomChannel.broadcast_to(self, blank: true)
     # winner
   end
 end
