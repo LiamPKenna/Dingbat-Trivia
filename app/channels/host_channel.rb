@@ -9,4 +9,9 @@ class HostChannel < ApplicationCable::Channel
 
   def begin
   end
+
+  def start_hosting(data)
+    stop_all_streams
+    stream_for "room_host_#{data['room_id']}"
+  end
 end

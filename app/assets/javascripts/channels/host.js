@@ -8,10 +8,15 @@ App.host = App.cable.subscriptions.create("HostChannel", {
   },
 
   received: function(data) {
+    alert(data['selected'])
     // Called when there's incoming data on the websocket for this channel
   },
 
   begin: function() {
     return this.perform('begin');
+  },
+
+  host: function(room_id) {
+    App.host.perform("start_hosting", {room_id: room_id});
   }
 });
