@@ -1,12 +1,17 @@
+
+<button id="test" type="button" name="button">TEST</button>
+<h1>Rooms#host</h1>
+<p>Find me in app/views/rooms/host.html.erb</p>
 <script>
-  const roomID = <%= @room.id %>
   $(document).ready(function() {
+    const roomID = <%= @room.id %>
     setTimeout(function () {
       App.host.host(parseInt(roomID));
     }, 1000);
+
+    $("#test").click(function () {
+      App.host.ask(parseInt(roomID));
+    })
   })
 
 </script>
-
-<h1>Rooms#host</h1>
-<p>Find me in app/views/rooms/host.html.erb</p>
