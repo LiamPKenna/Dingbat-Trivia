@@ -11,7 +11,7 @@ const playerQuestion = (questionOptions, playerID) => {
                 ).join('\n')
             }
             </div>
-            <button type='submit'>Go!</button>
+            <button type='button' id='go'>Go!</button>
         </form>
         `
     );
@@ -48,9 +48,10 @@ const removePlayerQuestion = () => {
     $('#question-form').remove();
     $('main').append(playerWaiting());
 }
-const addPlayerQuestion = (questionOptions, playerID) => {
+const addPlayerAnswers = (answers, playerID) => {
     $('#waiting').remove();
-    $('main').append( playerQuestion(questionOptions, playerID) );
+    $('#question-form').remove();
+    $('main').append( playerQuestion(answers, playerID) );
 }
 
 function hashToArray(hash) {
