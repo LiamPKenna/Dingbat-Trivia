@@ -34,7 +34,12 @@ class Room < ApplicationRecord
       self.next_question
     end
     @question = Question.find(self.current_question)
-    RoomChannel.broadcast_to(self, answers: {a1: @question.answer_1, a2: @question.answer_2, a3: @question.answer_3, a4: @question.answer_4})
+    RoomChannel.broadcast_to(self, answers: {
+      a1: @question.answer_1,
+      a2: @question.answer_2,
+      a3: @question.answer_3,
+      a4: @question.answer_4
+    })
     HostChannel.broadcast_to("room_host_#{self.id}", question: @question.question)
   end
 
