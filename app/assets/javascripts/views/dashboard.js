@@ -27,7 +27,11 @@ const dashboardAnswerSwirl = (answerText) => {
 }
 
 const winnerDisplay = (arr) => {
-    const players = arr.map(e => {return new Player(e);});
+    const players = arr.map(e => {
+      player = new Player(e);
+      player.score = e.score;
+      return player;
+    });
     const portraits = players.map(e => {return dashboardPlayerPortrait(e)});
     return (
         `
