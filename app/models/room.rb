@@ -31,79 +31,80 @@ class Room < ApplicationRecord
       a2: @question.answer_2,
       a3: @question.answer_3,
       a4: @question.answer_4
-      })
-    end
+    })
+  end
 
-    def wait(seconds)
-      i = 0
-      while i < seconds
-        sleep 1
-        i += 1
-      end
-    end
-
-    def reset_players
-      self.players.each do |player|
-        player.score = 0
-        player.save
-      end
-    end
-
-    # VIEW UPDATES
-    def push_player(this_player)
-      HostChannel.broadcast_to("room_host_#{self.id}", player: {
-        "id": this_player.id,
-        "name": this_player.name,
-        "count": self.players.length
-      })
-    end
-
-    def updateScores
-      self.players.each do |player|
-        HostChannel.broadcast_to("room_host_#{self.id}", update_score: {
-          "id": player.id,
-          "score": player.score,
-        })
-      end
-    end
-
-    def check_player_answers(correct_answer)
-      # correct_answers = []
-      self.players.each do |player|
-        # if player.check_answer(correct_answer) == true
-        #   correct_answers.push(player)
-        # end
-        player.check_answer(correct_answer)
-      end
-      # correct_answers
-    end
-
-    def start_game
-      # reset_players
-      updateScores()
-      self.get_question_list
-      2.times  do
-        next_question()
-        @question = Question.find(self.current_question)
-        ask_question()
-        self.ready_for_next = false
-        i = 0
-        while (self.ready_for_next == false) && (i < 20)
-          sleep 1
-          i += 1
-        end
-        RoomChannel.broadcast_to(self, blank: true)
-        wait(1)
-        check_player_answers(@question.correct_answer)
-        HostChannel.broadcast_to("room_host_#{self.id}", correct_answer: @question["answer_#{@question.correct_answer}"])
-        wait(4)
-        updateScores()
-        # show correct
-        # show scores
-        self.ready_for_next = false
-      end
-      RoomChannel.broadcast_to(self, blank: true)
-
-      # winner
+  def wait(seconds)
+    i = 0
+    while i < seconds
+      sleep 1
+      i += 1
     end
   end
+
+  def reset_players
+    self.players.each do |player|
+      player.reset
+    end
+  end
+
+    # VIEW UPDATES
+  def push_player(this_player)
+    HostChannel.broadcast_to("room_host_#{self.id}", player: {
+      "id": this_player.id,
+      "name": this_player.name,
+      "count": self.players.length
+    })
+  end
+
+  def updateScores
+    self.players.each do |player|
+      HostChannel.broadcast_to("room_host_#{self.id}", update_score: {
+        "id": player.id,
+        "score": player.score,
+      })
+    end
+  end
+
+  def check_player_answers(correct_answer)
+    correct_answers = []
+    self.players.each do |player|
+      if player.check_answer(correct_answer) == true
+        correct_answers.push(player)
+      end
+    end
+    correct_answers
+  end
+
+  def start_game
+    reset_players()
+    updateScores()
+    get_question_list()
+    question_loop(1)
+  end
+
+  def question_loop(loop_number)
+    next_question()
+    ask_question()
+    HostChannel.broadcast_to("room_host_#{self.id}", countdown: {loop_number: loop_number, room_id: self.id})
+  end
+
+  def end_question(loop_number)
+    @question = Question.find(self.current_question)
+    RoomChannel.broadcast_to(self, blank: true)
+    wait(1)
+    check_player_answers(@question.correct_answer)
+    HostChannel.broadcast_to("room_host_#{self.id}", correct_answer: @question["answer_#{@question.correct_answer}"])
+    wait(4)
+    updateScores()
+    if loop_number.to_i >= 8
+      end_game()
+    else
+      question_loop(loop_number.to_i + 1)
+    end
+  end
+
+  def end_game
+    HostChannel.broadcast_to("room_host_#{self.id}", correct_answer: "GAME OVER!!!")
+  end
+end
