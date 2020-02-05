@@ -53,9 +53,9 @@ class Room < ApplicationRecord
     HostChannel.broadcast_to("room_host_#{self.id}", player: {
       "id": this_player.id,
       "name": this_player.name,
-      "count": self.players.length,
-      "player_color": this_player.player_color
-    })
+      "player_color": this_player.player_color,
+      "player_icon": this_player.player_icon
+    }, count: self.players.length)
   end
 
   def updateScores
@@ -114,7 +114,13 @@ class Room < ApplicationRecord
   end
 
   def end_game
-    winner = get_winner().map { |w| [w.name, w.score] }.map { |w| w.join(',') }.join('|')
+    winner = get_winner().map do |w| {
+      name: w.name,
+      score: w.score,
+      player_color: w.player_color,
+      player_icon: w.player_icon
+    }
+    end
     HostChannel.broadcast_to("room_host_#{self.id}", winner: winner)
   end
 end
