@@ -1,5 +1,5 @@
 <style>
-    <% colors = [rand(0..255), rand(0..255), rand(0..255)] %>
+    <% colors = @player.player_color.split(' ').map(&:to_i) %>
     body {
         background-image: linear-gradient(
             rgba(<%= colors[0] %>, <%= colors[1] %>, <%= colors[2] %>, 0.65),
