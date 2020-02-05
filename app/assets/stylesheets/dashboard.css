@@ -48,7 +48,6 @@
     height: 20vh;
     width:  20vh;
     text-align: center;
-    /* background-color: rgba(173, 216, 230, 0.8); */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -153,4 +152,38 @@
     10%, 90% {
         transform: rotateZ(-4deg) scale(1);
     }
+}
+
+#final {
+    width: 100%;
+    height: 100%;
+    display: none;
+    padding: 2vh 2vw;
+}
+#winners {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 1vh 10vw;
+    grid-gap: 2vh;
+    height: 50%;
+}
+#winners > * {
+    margin: 2vh 2vw;
+    animation: 2.5s wiggle linear infinite;
+}
+
+
+#you-win {
+    margin: 0 auto;
+    width: 50vw;
+    font-size: 10vh;
+    text-align: center;
+
+    animation: 2.5s textBounce linear infinite;
+}
+@keyframes textBounce {
+    0%, 100% {transform: scale(1)}
+    50% {transform: scale(1.25);}
 }
