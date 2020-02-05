@@ -34,11 +34,12 @@
         <% if @room.players.any? %>
             <% @room.players.each_with_index do |p, i| %>
                 addDashboardPlayerPortrait(
-                    new Player(
-                    <%= p.id %>,
-                    '<%= p.name %>',
-                    0
-                    ),
+                    new Player({
+                      "id": <%= p.id %>,
+                      "name": "<%= p.name %>",
+                      "player_color": "<%= p.player_color %>",
+                      "player_icon": "<%= p.player_icon %>"
+                    }),
                     <%= i+1 %>
                 )
             <% end %>
