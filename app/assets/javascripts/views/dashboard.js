@@ -8,6 +8,7 @@ const dashboardPlayerPortrait = (player) => {
             }
           </style>
             <div id='player-${player.id}'>
+                <img src='${player.icon}'>
                 <h2>${player.name}</h2>
                 <p>${player.score}</p>
             </div>
@@ -15,6 +16,7 @@ const dashboardPlayerPortrait = (player) => {
         `
     );
 }
+
 
 const dashboardQuestionSlide = () => {
     return (`<h3 class='q-slide'>Next Question</h3>`);
