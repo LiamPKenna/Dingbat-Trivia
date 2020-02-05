@@ -16,13 +16,32 @@ const dashboardPlayerPortrait = (player) => {
     );
 }
 
+const dashboardQuestionSlide = () => {
+    return (`<h3 class='q-slide'>Next Question</h3>`);
+}
+const dashboardQuestionSmack = (questionText) => {
+    return (`<h3 id='question' class='q-smack'>${questionText}</h3>`);
+}
+
+
 //verbs
-const sendUpdate = (updateText) => {
-    $('#update-display ul').prepend(`<li>${updateText}</li>`);
+const sendQuestion = (questionText) => {
+    $('#question-display').empty();
+    $('#question-display').prepend(dashboardQuestionSlide);
+    setTimeout( () => {
+        $('.q-slide').remove();
+        $('#question-display').prepend(dashboardQuestionSmack(`Q: ${questionText}`));
+        setTimeout( () => {
+            $('#question').removeClass('q-smack');
+            $('#question').addClass('q-hover');
+        }, 500);
+    }, 1750);
+    $('#question-display p').text(questionText);
 }
-const sendMainText = (questionText) => {
-    $('#question-display h2').text(questionText);
+const sendAnswer = (answerText) => {
+    $('#question')
 }
+
 const addDashboardPlayerPortrait = (player, playerCount) => {
     const column = (playerCount % 2 === 0) ? 2 : 1;
     $(`#player-column-${column}`).append(dashboardPlayerPortrait(player));

@@ -4,6 +4,7 @@
         height: 100%;
         display: grid;
         grid-template-columns: 1fr 3fr 1fr;
+        overflow: hidden;
     }
 </style>
 
@@ -44,7 +45,5 @@
                 )
             <% end %>
         <% end %>
-
-        sendUpdate('Started Lobby!');
     });
 </script>
