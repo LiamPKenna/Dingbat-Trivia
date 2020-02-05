@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2020_02_03_171031) do
     t.string "name"
     t.integer "score", default: 0
     t.integer "current_answer", default: 0
+    t.string "player_color"
+    t.string "player_icon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

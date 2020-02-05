@@ -53,8 +53,9 @@ class Room < ApplicationRecord
     HostChannel.broadcast_to("room_host_#{self.id}", player: {
       "id": this_player.id,
       "name": this_player.name,
-      "count": self.players.length
-    })
+      "player_color": this_player.player_color,
+      "player_icon": this_player.player_icon
+    }, count: self.players.length)
   end
 
   def updateScores
@@ -93,8 +94,11 @@ class Room < ApplicationRecord
     @question = Question.find(self.current_question)
     RoomChannel.broadcast_to(self, blank: true)
     wait(1)
-    check_player_answers(@question.correct_answer)
-    HostChannel.broadcast_to("room_host_#{self.id}", correct_answer: @question["answer_#{@question.correct_answer}"])
+    @correct = check_player_answers(@question.correct_answer)
+    HostChannel.broadcast_to("room_host_#{self.id}",
+      correct_answer: @question["answer_#{@question.correct_answer}"],
+      correct_players: @correct.map { |c| c.id }.join(",")
+    )
     wait(4)
     updateScores()
     if loop_number.to_i >= 8
@@ -104,7 +108,19 @@ class Room < ApplicationRecord
     end
   end
 
+  def get_winner
+    top_score = self.players.sort { |a,b| a.score <=> b.score }[0].score
+    self.players.select { |p| p.score == top_score }
+  end
+
   def end_game
-    HostChannel.broadcast_to("room_host_#{self.id}", correct_answer: "GAME OVER!!!")
+    winner = get_winner().map do |w| {
+      name: w.name,
+      score: w.score,
+      player_color: w.player_color,
+      player_icon: w.player_icon
+    }
+    end
+    HostChannel.broadcast_to("room_host_#{self.id}", winner: winner)
   end
 end

@@ -10,26 +10,33 @@ App.host = App.cable.subscriptions.create("HostChannel", {
   received: function(data) {
     if (data["selected"]) {
       // alert(data['selected'])
+
     } else if (data["question"]) {
       sendMainText(`Question: ${data["question"]}`);
-      console.log(data["question"]);
+
     } else if (data["correct_answer"]){
       sendMainText(`Correct Answer: ${data["correct_answer"]}`);
+      // sendCorrectPlayers(data['correct_players'].split(","));
+
     } else if (data["player"]) {
-      addDashboardPlayerPortrait(new Player(
-        data["player"]["id"],
-        data["player"]["name"],
-        0), data["player"]["count"])
+      addDashboardPlayerPortrait(new Player(data["player"]), data["count"]);
+
     } else if (data["update_score"]) {
-      updatePlayerScore(data["update_score"]["id"], data["update_score"]["score"])
+      updatePlayerScore(data["update_score"]["id"], data["update_score"]["score"]);
+
     } else if (data["countdown"]) {
       setTimeout(function () {
         App.host.perform("end_question", {
-          room_id: data["countdown"]["room_id"], loop_number: data["countdown"]["loop_number"] });
+          room_id: data["countdown"]["room_id"],
+          loop_number: data["countdown"]["loop_number"]
+        });
       }, 10000);
-    }
 
-    // Called when there's incoming data on the websocket for this channel
+    } else if (data["winner"]){
+      sendWinners(data["winner"]);
+      sendMainText(`Winner: ${data["question"]}`);
+
+    }
   },
 
   begin: function() {

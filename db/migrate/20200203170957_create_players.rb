@@ -5,6 +5,8 @@ class CreatePlayers < ActiveRecord::Migration[5.2]
       t.string :name
       t.integer :score, default: 0
       t.integer :current_answer, default: 0
+      t.string :player_color
+      t.string :player_icon
 
       t.timestamps
     end

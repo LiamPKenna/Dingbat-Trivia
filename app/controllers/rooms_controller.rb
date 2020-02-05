@@ -27,6 +27,7 @@ class RoomsController < ApplicationController
     if @room
       updated_params = player_params
       updated_params[:room_id] = params[:player][:room_id]
+      updated_params[:player_color] = "#{rand(0..255)} #{rand(0..255)} #{rand(0..255)}" 
       @player = Player.create!(updated_params)
       HostChannel.broadcast_to("room_host_#{@room.id}", selected: "New player: #{@player.name}")
       @room.push_player(@player)

@@ -31,17 +31,22 @@ const updatePlayerScore = (playerID, newScore) => {
     $(`#player-${playerID} p`).text(newScore)
 }
 
+
+const sendCorrectPlayers = (arr) => {}
+
+const sendWinners = (arr) => {}
+
 const updateQuestionNumber = (newNumber) => {
     $('#question-number').text(newNumber)
 }
 
 //extra
 class Player {
-    constructor(id, name, color, icon, score){
-        this.id = id;
-        this.name = name;
-        this.color = color;
-        this.icon = icon;
-        this.score = score;
+    constructor(data){
+        this.id = data['id'];
+        this.name = data['name'];
+        this.color = data['player_color'];
+        this.icon = data['player_icon'];
+        this.score = 0;
     }
 }
