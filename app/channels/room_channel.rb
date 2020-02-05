@@ -3,10 +3,6 @@ class RoomChannel < ApplicationCable::Channel
     stream_from "room_channel"
   end
 
-  def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
-  end
-
   def start_listening(data)
     stop_all_streams
     stream_for Room.find(data['room_id'])
