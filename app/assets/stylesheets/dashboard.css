@@ -8,22 +8,41 @@
     background-color: green;
     overflow: auto;
 }
+
 #update-display {
     height: 35%;
-    background-color: green;
+    width: 100%;
+    padding: 1vh 1vw;
+    overflow: hidden;
+}
+#update-display div {
+    height: 100%;
+    max-width: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 3vh;
+    padding: 2vh 2vw;
+}
+#update-display h3 {
+    color: white;
+    text-align: center;
+    font-size: 3vh;
+    line-height: 3vh;
+    padding: 1vh;
+    border-bottom: 2px solid black;
+}
+#update-display ul {
     list-style-type: none;
-    padding:0;
-    width:100%;
-    overflow: auto;
+    padding: 1vh 1vw;
 }
 #update-display li {
-    font-size: 3.5vh;
-    line-height: 4vh;
+    font-size: 2.5vh;
+    line-height: 3vh;
     opacity: 0;
-    animation: 8s updateFade linear 1;
+    color: white;
+    animation: 5s updateFade linear 1;
 }
 @keyframes updateFade {
-    0%, 50% {opacity: 1;}
+    0%, 75% {opacity: 1;}
     100% {opacity: 0;}
 }
 
