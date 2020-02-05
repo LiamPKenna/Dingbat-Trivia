@@ -6,6 +6,11 @@ class Player < ApplicationRecord
     self.save
   end
 
+  def reset
+    self.score = 0
+    self.save
+  end
+
   def check_answer(correct_answer)
     p "#{self.current_answer.to_i} == #{correct_answer.to_i}"
     if self.current_answer.to_i == correct_answer.to_i
