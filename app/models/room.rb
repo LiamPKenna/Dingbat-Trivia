@@ -93,8 +93,11 @@ class Room < ApplicationRecord
     @question = Question.find(self.current_question)
     RoomChannel.broadcast_to(self, blank: true)
     wait(1)
-    check_player_answers(@question.correct_answer)
-    HostChannel.broadcast_to("room_host_#{self.id}", correct_answer: @question["answer_#{@question.correct_answer}"])
+    @correct = check_player_answers(@question.correct_answer)
+    HostChannel.broadcast_to("room_host_#{self.id}",
+      correct_answer: @question["answer_#{@question.correct_answer}"],
+      correct_players: @correct.map { |c| c.id }.join(",")
+    )
     wait(4)
     updateScores()
     if loop_number.to_i >= 8
