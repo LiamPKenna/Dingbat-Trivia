@@ -101,7 +101,7 @@ class Room < ApplicationRecord
       correct_answer: @question["answer_#{@question.correct_answer}"],
       correct_players: @correct.map { |c| c.id }
     )
-    wait(4)
+    wait(5)
     updateScores()
     if loop_number.to_i >= 8
       end_game()
