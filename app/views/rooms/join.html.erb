@@ -1,6 +1,59 @@
-<h1>Rooms#join</h1>
-<form class="" action="/join" method="post">
-  <input type="text" name="player[room_id]" value="">
-  <input type="text" name="player[name]" value="">
-  <button type="submit" name="button">GO</button>
-</form>
+<style>
+  /* colors = rbg(#cae7b9 #f3de8a #eb9486 #7e7f9a #97a7b3 % */
+  body {
+    animation: 5s yeep linear infinite;
+    background-image:
+    linear-gradient( #cae7b9, #f3de8a,#eb9486,#7e7f9a,#97a7b3);
+  }
+  main {
+    width: 80%;
+    margin: 0 auto;
+  }
+  #join_button_size {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5vh;
+    border-radius: 10vh;
+    width: 45vw;
+    border: 4px solid black;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    margin: 1vh;
+    line-height:10px;
+  }
+  #join_form {
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 19vh;
+  }
+  input[type="text"] {
+    display:flex;
+    align-items: center;
+    margin: 1vh;
+    width: 45vw;
+    height: 6vh;
+    padding: 20px;
+    font-size: 3.5vh;
+    border-radius: 10vh;
+    border: 4px solid black;
+  }
+</style>
+
+<!-- Page Content -->
+<div id='main-display'>
+  <div id='banner'>
+    <h1>
+      <span class='a'>D</span><span class='b'> i </span><span class='a'>n</span><span class='b'>g</span><span class='a'>B</span><span class='b'>a</span><span class='a '>t</span><span class='b'>!</span>
+    </h1>
+  </div>
+  <div id ="join_form">
+  <form class="" action="/join" method="post">
+    <input type="text" name="player[room_id]" value="">
+    <input type="text" name="player[name]" value="">
+    <button type="submit" id="join_button_size" name="button">Join Room!</button>
+  </form>
+  </div>

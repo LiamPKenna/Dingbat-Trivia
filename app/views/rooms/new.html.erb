@@ -1,8 +1,49 @@
-<h1>Rooms#new</h1>
-<p>Find me in app/views/rooms/new.html.erb</p>
+<style>
+body {
+  animation: 5s yeep linear infinite;
+  background-image:
+    linear-gradient( #cae7b9, #f3de8a,#eb9486,#7e7f9a,#97a7b3);
+}
+main {
+    width: 80%;
+    margin: 0 auto;
+}
+#main_button_size {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5vh;
+  border-radius: 10vh;
+  padding: 40px;
+  border: 4px solid black;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+  margin: 1vh;
+  line-height:10px;
+}
+#main_form {
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 19vh;
+}
+
+</style>
+
+
+<!-- Page Content -->
+<div id='banner'>
+    <h1>
+        <span class='a'>D</span><span class='b'> i </span><span class='a'>n</span><span class='b'>g</span><span class='a'>B</span><span class='b'>a</span><span class='a '>t</span><span class='b'>!</span>
+    </h1>
+</div>
+<div id="main_form">
 <form class="" action="/rooms" method="post">
-  <button type="submit" name="button">HOST</button>
+  <button id = "main_button_size" type="submit" name="button">Create Game!</button>
 </form>
 <form class="" action="/rooms/join" method="get">
-  <button type="submit" name="button">JOIN</button>
+  <button id = "main_button_size" type="submit" name="button">Join Room!</button>
 </form>
+</div>
