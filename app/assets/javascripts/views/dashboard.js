@@ -1,7 +1,7 @@
 const dashboardPlayerPortrait = (player) => {
     return (
         `
-        <div class='player-portrait spin-up' id='portrait-${player.id}'>
+        <div class='player-portrait' id='portrait-${player.id}'>
           <style>
             #portrait-${player.id} {
               background-color: rgba(${player.color[0]}, ${player.color[1]}, ${player.color[2]}, 0.65)
@@ -23,7 +23,22 @@ const dashboardQuestionSmack = (questionText) => {
     return (`<h3 id='question' class='q-smack'>${questionText}</h3>`);
 }
 const dashboardAnswerSwirl = (answerText) => {
-    return (`<h3 id='answer' class='a-swirl'>${answerText}</h3>`)
+    return (`<h3 id='answer' class='a-swirl'>${answerText}</h3>`);
+}
+
+const winnerDisplay = (arr) => {
+    const players = arr.map(e => {return new Player(e);});
+    const portraits = players.map(e => {return dashboardPlayerPortrait(e)});
+    return (
+        `
+        <div id='final'>
+            <h1 id='you-win'>Winner${(arr.length > 1) ? 's' : ''}!</h1>
+            <div id='winners'>
+                ${portraits.join('\n')}
+            </div>
+        </div>
+        `
+    );
 }
 
 //verbs
@@ -57,19 +72,27 @@ const addDashboardPlayerPortrait = (player, playerCount) => {
     const column = (playerCount % 2 === 0) ? 2 : 1;
     $(`#player-column-${column}`).append(dashboardPlayerPortrait(player));
     const portrait = $(`#portrait-${player.id}`);
+    portrait.addClass('spin-up')
     setTimeout(() => {
         portrait.removeClass('spin-up');
         portrait.addClass('wiggle');
     }, 350);
 }
 const updatePlayerScore = (playerID, newScore) => {
-    $(`#player-${playerID} p`).text(newScore)
+    $(`#player-${playerID} p`).text(newScore);
 }
 
 
 const sendCorrectPlayers = (arr) => {}
 
-const sendWinners = (arr) => {}
+const sendWinners = (arr) => {
+    $('main').fadeOut(1500);
+    setTimeout( () => {
+        $('main').remove();
+        $('body').append(winnerDisplay(arr));
+        $('#final').fadeIn(1500);
+    }, 1500);
+}
 
 const updateQuestionNumber = (newNumber) => {
     $('#question-number').text(newNumber)
