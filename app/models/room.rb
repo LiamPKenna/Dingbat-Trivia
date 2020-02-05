@@ -1,23 +1,7 @@
 class Room < ApplicationRecord
   has_many :players
 
-  def next_question
-    q_arr = self.questions.split(',')
-    self.current_question = q_arr.shift.to_i
-    self.questions = q_arr.join(',')
-    self.save
-  end
-
-  def get_question_list
-    self.questions = Question.random.map { |q| q["id"] }.join(',')
-    self.save
-  end
-
-  def check_if_ready
-    self.ready_for_next = self.players.all? { |p| p.current_answer != 0 }
-    self.save
-  end
-
+  # VIEW UPDATES
   def ask_question
     if self.current_question == nil
       self.get_question_list
@@ -34,21 +18,6 @@ class Room < ApplicationRecord
     })
   end
 
-  def wait(seconds)
-    i = 0
-    while i < seconds
-      sleep 1
-      i += 1
-    end
-  end
-
-  def reset_players
-    self.players.each do |player|
-      player.reset
-    end
-  end
-
-    # VIEW UPDATES
   def push_player(this_player)
     HostChannel.broadcast_to("room_host_#{self.id}", player: {
       "id": this_player.id,
@@ -67,6 +36,21 @@ class Room < ApplicationRecord
     end
   end
 
+  # LOGIC HELPER METHODS
+  def wait(seconds)
+    i = 0
+    while i < seconds
+      sleep 1
+      i += 1
+    end
+  end
+
+  def reset_players
+    self.players.each do |player|
+      player.reset
+    end
+  end
+
   def check_player_answers(correct_answer)
     correct_answers = []
     self.players.each do |player|
@@ -77,6 +61,24 @@ class Room < ApplicationRecord
     correct_answers
   end
 
+  def next_question
+    q_arr = self.questions.split(',')
+    self.current_question = q_arr.shift.to_i
+    self.questions = q_arr.join(',')
+    self.save
+  end
+
+  def get_question_list
+    self.questions = Question.random.map { |q| q["id"] }.join(',')
+    self.save
+  end
+
+  def get_winner
+    top_score = self.players.sort { |a,b| a.score <=> b.score }[0].score
+    self.players.select { |p| p.score == top_score }
+  end
+
+  # GAME LOGIC
   def start_game
     reset_players()
     updateScores()
@@ -97,20 +99,15 @@ class Room < ApplicationRecord
     @correct = check_player_answers(@question.correct_answer)
     HostChannel.broadcast_to("room_host_#{self.id}",
       correct_answer: @question["answer_#{@question.correct_answer}"],
-      correct_players: @correct.map { |c| c.id }.join(",")
+      correct_players: @correct.map { |c| c.id }
     )
-    wait(4)
+    wait(5)
     updateScores()
     if loop_number.to_i >= 8
       end_game()
     else
       question_loop(loop_number.to_i + 1)
     end
-  end
-
-  def get_winner
-    top_score = self.players.sort { |a,b| a.score <=> b.score }[0].score
-    self.players.select { |p| p.score == top_score }
   end
 
   def end_game

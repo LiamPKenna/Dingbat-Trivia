@@ -9,14 +9,15 @@ App.host = App.cable.subscriptions.create("HostChannel", {
 
   received: function(data) {
     if (data["selected"]) {
-      // alert(data['selected'])
+      console.log(data['selected']);
 
     } else if (data["question"]) {
-      sendMainText(`Question: ${data["question"]}`);
+      // sendQuestion(data["question"]);
 
     } else if (data["correct_answer"]){
-      sendMainText(`Correct Answer: ${data["correct_answer"]}`);
-      // sendCorrectPlayers(data['correct_players'].split(","));
+      // sendAnswer(`Correct Answer: ${data["correct_answer"]}`);
+      console.log(data['correct_players']);
+      // sendCorrectPlayers(data['correct_players']);
 
     } else if (data["player"]) {
       addDashboardPlayerPortrait(new Player(data["player"]), data["count"]);

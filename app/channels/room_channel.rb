@@ -12,9 +12,8 @@ class RoomChannel < ApplicationCable::Channel
     @player = Player.find(data["id"])
     @player.select_answer(data["selected"].to_i)
     @room = Room.find(@player.room_id)
-    @room.check_if_ready
     # RoomChannel.broadcast_to(@room, selected: data["selected"])
-    RoomChannel.broadcast_to("room_host_#{@room.id}", selected: data["id"])
+    HostChannel.broadcast_to("room_host_#{@room.id}", selected: @player.id)
   end
 
   def start_game(data)
