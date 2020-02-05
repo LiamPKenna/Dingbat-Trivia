@@ -5,29 +5,19 @@
         display: grid;
         grid-template-columns: 1fr 3fr 1fr;
     }
-    main > * {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    }
 </style>
 
 <main>
     <div id='player-column-1'>
     </div>
     <div id='main-display'>
-        <div id='info-display'>
+        <div id='banner'>
+            <h1>
+                <span class='a'>D</span><span class='b'> i </span><span class='a'>n</span><span class='b'>g</span><span class='a'>B</span><span class='b'>a</span><span class='a '>t</span><span class='b'>!</span>
+            </h1>
         </div>
         <div id='question-display'>
-            <h2>Waiting for question...</h2>
-        </div>
-        <div id='update-display'>
-            <div>
-                <h3>Current Events</h3>
-                <ul>
-                </ul>
-            </div>
+            <p>Waiting for question...</p>
         </div>
     </div>
     <div id='player-column-2'>
@@ -49,7 +39,7 @@
                     '<%= p.name %>',
                     0
                     ),
-                    <%= i %>
+                    <%= i+1 %>
                 )
             <% end %>
         <% end %>
