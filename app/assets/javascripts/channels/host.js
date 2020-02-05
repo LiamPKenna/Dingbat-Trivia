@@ -9,14 +9,12 @@ App.host = App.cable.subscriptions.create("HostChannel", {
 
   received: function(data) {
     if (data["selected"]) {
-      console.log(data['selected']);
 
     } else if (data["question"]) {
-      // sendQuestion(data["question"]);
+      sendQuestion(data["question"]);
 
     } else if (data["correct_answer"]){
-      // sendAnswer(`Correct Answer: ${data["correct_answer"]}`);
-      console.log(data['correct_players']);
+      sendAnswer(`Correct Answer: ${data["correct_answer"]}`);
       // sendCorrectPlayers(data['correct_players']);
 
     } else if (data["player"]) {
@@ -35,7 +33,6 @@ App.host = App.cable.subscriptions.create("HostChannel", {
 
     } else if (data["winner"]){
       sendWinners(data["winner"]);
-      sendMainText(`Winner: ${data["question"]}`);
 
     }
   },
