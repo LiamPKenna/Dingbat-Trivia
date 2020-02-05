@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_02_03_171031) do
     t.integer "current_question"
     t.string "questions"
     t.boolean "ready_for_next"
+    t.string "image_numbers"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

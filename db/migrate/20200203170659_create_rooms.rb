@@ -5,6 +5,7 @@ class CreateRooms < ActiveRecord::Migration[5.2]
       t.integer :current_question
       t.string :questions
       t.boolean :ready_for_next
+      t.string :image_numbers
 
       t.timestamps
     end
