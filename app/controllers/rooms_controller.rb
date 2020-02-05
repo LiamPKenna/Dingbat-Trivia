@@ -18,7 +18,8 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.create!()
+
+    @room = Room.create!( image_numbers: (1..8).to_a.shuffle!.join(',') )
     redirect_to "/rooms/#{@room.id}"
   end
 
@@ -27,7 +28,8 @@ class RoomsController < ApplicationController
     if @room
       updated_params = player_params
       updated_params[:room_id] = params[:player][:room_id]
-      updated_params[:player_color] = "#{rand(0..255)} #{rand(0..255)} #{rand(0..255)}" 
+      updated_params[:player_icon] = "/bat#{@room.get_image_number}.png"
+      updated_params[:player_color] = "#{rand(0..255)} #{rand(0..255)} #{rand(0..255)}"
       @player = Player.create!(updated_params)
       HostChannel.broadcast_to("room_host_#{@room.id}", selected: "New player: #{@player.name}")
       @room.push_player(@player)

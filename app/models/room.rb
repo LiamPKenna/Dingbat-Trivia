@@ -68,6 +68,14 @@ class Room < ApplicationRecord
     self.save
   end
 
+  def get_image_number
+    n_arr = self.image_numbers.split(',')
+    image_number = n_arr.shift
+    self.image_numbers = n_arr.join(',')
+    self.save
+    image_number
+  end
+
   def get_question_list
     self.questions = Question.random.map { |q| q["id"] }.join(',')
     self.save
