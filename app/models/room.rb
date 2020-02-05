@@ -53,7 +53,8 @@ class Room < ApplicationRecord
     HostChannel.broadcast_to("room_host_#{self.id}", player: {
       "id": this_player.id,
       "name": this_player.name,
-      "count": self.players.length
+      "count": self.players.length,
+      "player_color": this_player.player_color
     })
   end
 
@@ -107,7 +108,13 @@ class Room < ApplicationRecord
     end
   end
 
+  def get_winner
+    top_score = self.players.sort { |a,b| a.score <=> b.score }[0].score
+    self.players.select { |p| p.score == top_score }
+  end
+
   def end_game
-    HostChannel.broadcast_to("room_host_#{self.id}", correct_answer: "GAME OVER!!!")
+    winner = get_winner().map { |w| [w.name, w.score] }.map { |w| w.join(',') }.join('|')
+    HostChannel.broadcast_to("room_host_#{self.id}", winner: winner)
   end
 end

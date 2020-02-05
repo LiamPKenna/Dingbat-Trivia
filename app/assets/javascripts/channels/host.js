@@ -16,23 +16,31 @@ App.host = App.cable.subscriptions.create("HostChannel", {
 
     } else if (data["correct_answer"]){
       sendMainText(`Correct Answer: ${data["correct_answer"]}`);
-      sendCorrectPlayers(data['correct_players'].split(","));
+      // sendCorrectPlayers(data['correct_players'].split(","));
 
     } else if (data["player"]) {
       addDashboardPlayerPortrait(new Player(
         data["player"]["id"],
         data["player"]["name"],
+        data["player"]["player_color"],
         0), data["player"]["count"]
       );
-  
+
     } else if (data["update_score"]) {
       updatePlayerScore(data["update_score"]["id"], data["update_score"]["score"]);
 
     } else if (data["countdown"]) {
       setTimeout(function () {
         App.host.perform("end_question", {
-          room_id: data["countdown"]["room_id"], loop_number: data["countdown"]["loop_number"] });
+          room_id: data["countdown"]["room_id"],
+          loop_number: data["countdown"]["loop_number"]
+        });
       }, 10000);
+
+    } else if (data["winner"]){
+      winnerArray = data["winner"].split("|").map(w => { w.split(',')})
+      sendWinners(winnerArray);
+      sendMainText(`Winner: ${data["question"]}`);
     }
 
     // Called when there's incoming data on the websocket for this channel
