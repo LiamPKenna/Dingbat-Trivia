@@ -26,18 +26,13 @@
     color: #D38B5D;
 }
 
-#question-display {
-    height: 75%;
-    width: 100%;
-    background-color: green;
-    overflow: auto;
-}
 
 #player-column-1, #player-column-2 {
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
+    z-index: 10;
 }
 
 
@@ -45,11 +40,11 @@
     transform: rotateZ(5deg);
 }
 .player-portrait:nth-of-type(even) div {
-    transform: rotateY(-5deg);
+    transform: rotateZ(-5deg);
 }
 
-
 .player-portrait {
+    z-index: 5;
     height: 20vh;
     width:  20vh;
     text-align: center;
@@ -74,7 +69,6 @@
     animation: 25s wiggle linear infinite;
 }
 
-
 .player-portrait div {
     width: 90%;
     height: 90%;
@@ -84,10 +78,79 @@
 }
 
 .player-portrait h2 {
-    font-size:4vh;
+    font-size: 4vh;
 }
 
 .player-portrait p {
-    font-size:3vh;
+    font-size: 3vh;
     font-weight:bold;
+}
+
+
+
+#question-display {
+    height: 75%;
+    width: 100%;
+    padding: 5vh 2vw;
+    display: flex;
+    justify-content: center;
+}
+.q-slide {
+    text-align: center;
+    animation: 1.75s slideBy linear 1;
+    font-size: 4vh;
+    z-index: 1;
+    font-family: 'Fresca', sans-serif;
+}
+@keyframes slideBy {
+    0% {transform: translateX(50vw); opacity: 0;}
+    10% {transform: translateX(10vw); opacity: 1;}
+    90% {transform: translateX(-10vw); opacity: 1;}
+    100% {transform: translateX(-50vw); opacity: 0;}
+}
+
+#question, #answer {
+    align-self: center;
+    text-align: center;
+    font-size: 5vh;
+    transform: rotateZ(-4deg);
+    z-index: 100;
+    font-family: 'Fresca', sans-serif;
+}
+.q-smack {
+    animation: 400ms smack linear 1;
+}
+@keyframes smack {
+    0% {transform: scale(5) rotateZ(-1deg);}
+    50% {transform: scale(1) rotateZ(-2deg);}
+    75% {transform: scale(1.25) rotateZ(-3deg);}
+    100% {transform: scale(1) rotateZ(-4deg);}
+}
+
+.q-hover {
+    animation: 3s hover linear infinite;
+}
+@keyframes hover {
+    0%, 100% {transform: scale(1) rotateZ(-4deg);}
+    50% {transform: scale(1.1) rotateZ(-4deg);}
+}
+
+.q-flick {
+    animation: 600ms flick linear 1;
+}
+@keyframes flick {
+    from {transform: translateX(0vw) translateY(0vh)rotateZ(-4deg);}
+    to {transform: translateX(-75vw) translateY(-75vh)rotateZ(-80deg);}
+}
+
+.a-swirl {
+    animation: 4s swirl linear infinite;
+}
+@keyframes swirl {
+    0%, 100% {
+        transform: rotateZ(-600deg) scale(0);
+    }
+    10%, 90% {
+        transform: rotateZ(-4deg) scale(1);
+    }
 }
