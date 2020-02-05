@@ -22,24 +22,35 @@ const dashboardQuestionSlide = () => {
 const dashboardQuestionSmack = (questionText) => {
     return (`<h3 id='question' class='q-smack'>${questionText}</h3>`);
 }
-
+const dashboardAnswerSwirl = (answerText) => {
+    return (`<h3 id='answer' class='a-swirl'>${answerText}</h3>`)
+}
 
 //verbs
 const sendQuestion = (questionText) => {
-    $('#question-display').empty();
-    $('#question-display').prepend(dashboardQuestionSlide);
+    qDisplay = $('#question-display');
+    qDisplay.empty();
+    qDisplay.prepend(dashboardQuestionSlide);
     setTimeout( () => {
         $('.q-slide').remove();
-        $('#question-display').prepend(dashboardQuestionSmack(`Q: ${questionText}`));
+        qDisplay.prepend(dashboardQuestionSmack(`Q: ${questionText}`));
         setTimeout( () => {
             $('#question').removeClass('q-smack');
             $('#question').addClass('q-hover');
-        }, 500);
+        }, 400);
     }, 1750);
-    $('#question-display p').text(questionText);
 }
 const sendAnswer = (answerText) => {
-    $('#question')
+    const question = $('#question');
+    question.removeClass('q-hover');
+    question.addClass('q-flick');
+    setTimeout( () => {
+        question.remove();
+        $('#question-display').prepend(dashboardAnswerSwirl(`A: ${answerText}`));
+    }, 500);
+    setTimeout( () => {
+        $('#answer').remove();
+    }, 4500)
 }
 
 const addDashboardPlayerPortrait = (player, playerCount) => {

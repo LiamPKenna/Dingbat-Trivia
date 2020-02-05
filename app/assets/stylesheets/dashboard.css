@@ -100,6 +100,7 @@
     animation: 1.75s slideBy linear 1;
     font-size: 4vh;
     z-index: 1;
+    font-family: 'Fresca', sans-serif;
 }
 @keyframes slideBy {
     0% {transform: translateX(50vw); opacity: 0;}
@@ -108,7 +109,7 @@
     100% {transform: translateX(-50vw); opacity: 0;}
 }
 
-#question {
+#question, #answer {
     align-self: center;
     text-align: center;
     font-size: 5vh;
@@ -117,7 +118,7 @@
     font-family: 'Fresca', sans-serif;
 }
 .q-smack {
-    animation: 350ms smack linear 1;
+    animation: 400ms smack linear 1;
 }
 @keyframes smack {
     0% {transform: scale(5) rotateZ(-1deg);}
@@ -127,9 +128,29 @@
 }
 
 .q-hover {
-    animation: 3s hover linear infinite
+    animation: 3s hover linear infinite;
 }
 @keyframes hover {
     0%, 100% {transform: scale(1) rotateZ(-4deg);}
     50% {transform: scale(1.1) rotateZ(-4deg);}
+}
+
+.q-flick {
+    animation: 600ms flick linear 1;
+}
+@keyframes flick {
+    from {transform: translateX(0vw) translateY(0vh)rotateZ(-4deg);}
+    to {transform: translateX(-75vw) translateY(-75vh)rotateZ(-80deg);}
+}
+
+.a-swirl {
+    animation: 4s swirl linear infinite;
+}
+@keyframes swirl {
+    0%, 100% {
+        transform: rotateZ(-600deg) scale(0);
+    }
+    10%, 90% {
+        transform: rotateZ(-4deg) scale(1);
+    }
 }
