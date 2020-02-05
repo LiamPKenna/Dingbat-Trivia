@@ -82,7 +82,7 @@ class Room < ApplicationRecord
   end
 
   def get_winner
-    top_score = self.players.sort { |a,b| a.score <=> b.score }[0].score
+    top_score = self.players.sort { |a,b| b.score <=> a.score }[0].score
     self.players.select { |p| p.score == top_score }
   end
 
@@ -120,6 +120,7 @@ class Room < ApplicationRecord
 
   def end_game
     winner = get_winner().map do |w| {
+      id: w.id,
       name: w.name,
       score: w.score,
       player_color: w.player_color,
