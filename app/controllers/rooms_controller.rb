@@ -24,17 +24,28 @@ class RoomsController < ApplicationController
   end
 
   def new_player
-    @room = Room.find(params[:player][:room_id])
+
+    begin
+      @room = Room.find(params[:player][:room_id])
+    rescue ActiveRecord::RecordNotFound => e
+      @room = nil
+    end
     if @room
-      updated_params = player_params
-      updated_params[:room_id] = params[:player][:room_id]
-      updated_params[:player_icon] = "/bat#{@room.get_image_number}.png"
-      updated_params[:player_color] = "#{rand(0..255)} #{rand(0..255)} #{rand(0..255)}"
-      @player = Player.create!(updated_params)
-      HostChannel.broadcast_to("room_host_#{@room.id}", selected: "New player: #{@player.name}")
-      @room.push_player(@player)
-      redirect_to "/rooms/#{@room.id}/players/#{@player.id}"
+      if @room.players.length < 8
+        updated_params = player_params
+        updated_params[:room_id] = params[:player][:room_id]
+        updated_params[:player_icon] = "/bat#{@room.get_image_number}.png"
+        updated_params[:player_color] = "#{rand(0..255)} #{rand(0..255)} #{rand(0..255)}"
+        @player = Player.create!(updated_params)
+        HostChannel.broadcast_to("room_host_#{@room.id}", selected: @player.id)
+        @room.push_player(@player)
+        redirect_to "/rooms/#{@room.id}/players/#{@player.id}"
+      else
+        flash[:alert] = "Room is full"
+        render :join
+      end
     else
+      flash[:alert] = "Room does not exist"
       render :join
     end
   end

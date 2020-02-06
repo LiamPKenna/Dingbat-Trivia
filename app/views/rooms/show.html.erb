@@ -36,7 +36,8 @@
 </main>
 
 <script type='text/jscript'>
-    const playerID = <%= @player.id %>
+    const playerID = <%= @player.id %>;
+    const woosh = new Audio('/mp3/whoosh.mp3');
     $(document).ready(function() {
         const roomID = <%= @room.id %>;
         setTimeout(function () {
@@ -51,6 +52,7 @@
       $("main").on('click', ".answer-go", function(event) {
         console.log(parseInt($(event.target).val()));
           const selected = parseInt($(event.target).val());
+          woosh.play();
           App.room.submit_answer({"id":playerID, "selected":selected});
           removePlayerQuestion();
       });

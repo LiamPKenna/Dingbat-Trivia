@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   get 'rooms/:room_id/players/:id', to: 'rooms#show', as: 'player'
   get 'rooms/:room_id', to: 'rooms#host', as: 'room'
   post 'rooms', to: 'rooms#create'
-  post 'join', to: 'rooms#new_player'
+  post 'rooms/join', to: 'rooms#new_player'
   mount ActionCable.server => '/cable'
 end

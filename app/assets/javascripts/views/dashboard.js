@@ -1,3 +1,9 @@
+
+const join = new Audio('/mp3/join.mp3');
+const tap = new Audio('/mp3/tap.mp3');
+const boing = new Audio('/mp3/boing.mp3');
+const win = new Audio('/mp3/win.mp3');
+
 const dashboardPlayerPortrait = (player) => {
     return (
         `
@@ -59,6 +65,7 @@ const sendQuestion = (questionText) => {
     qDisplay.prepend(dashboardQuestionSlide);
     setTimeout( () => {
         $('.q-slide').remove();
+        boing.play();
         qDisplay.prepend(dashboardQuestionSmack(`Q: ${questionText}`));
         setTimeout( () => {
             $('#question').removeClass('q-smack');
@@ -74,6 +81,7 @@ const sendAnswer = (answerText) => {
     question.addClass('q-flick');
     setTimeout( () => {
         question.remove();
+        tap.play();
         $('#question-display').prepend(dashboardAnswerSwirl(`A: ${answerText}`));
     }, 500);
     setTimeout( () => {
@@ -85,7 +93,8 @@ const addDashboardPlayerPortrait = (player, playerCount) => {
     const column = (playerCount % 2 === 0) ? 2 : 1;
     $(`#player-column-${column}`).append(dashboardPlayerPortrait(player));
     const portrait = $(`#portrait-${player.id}`);
-    portrait.addClass('spin-up')
+    portrait.addClass('spin-up');
+    join.play();
     setTimeout(() => {
         portrait.removeClass('spin-up');
         portrait.addClass('wiggle');
@@ -104,11 +113,16 @@ const sendWinners = (arr) => {
         $('main').remove();
         $('body').append(winnerDisplay(arr));
         $('#final').fadeIn(1500);
+        win.play();
     }, 1500);
 }
 
 const updateQuestionNumber = (newNumber) => {
     $('#question-number').text(newNumber)
+}
+
+const dashboardTimer = (count) => {
+  console.log(count);
 }
 
 //extra
