@@ -7,7 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Question.destroy_all
 Player.destroy_all
-Room.destroy_all
+
+rooms = Room.all.each { |r| r.destroy }
 
 questions = [
   {
