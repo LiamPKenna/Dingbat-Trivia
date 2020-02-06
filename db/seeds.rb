@@ -5,7 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-ActiveRecord::Base.connection.disable_referential_integrity do
+if Rails.env.development?
+  ActiveRecord::Base.connection.disable_referential_integrity do
+    Question.destroy_all
+    Room.destroy_all
+    Player.destroy_all
+  end
+else
   Question.destroy_all
   Room.destroy_all
   Player.destroy_all
