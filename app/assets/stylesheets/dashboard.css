@@ -35,6 +35,18 @@
     font-style: italic;
 }
 
+#timer {
+    position: absolute;
+    font-size: 25vh;
+    height: 25vh;
+    width: 50vw;
+    top: 15vh;
+    left: 25vw;
+    opacity: .15;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+}
+
 #player-column-1, #player-column-2 {
     display: flex;
     align-items: center;
@@ -111,7 +123,7 @@
 
 
 #question-display {
-    height: 75%;
+    height: 60%;
     width: 100%;
     padding: 5vh 2vw;
     display: flex;

@@ -1,7 +1,7 @@
 #player-header {
     height: 15vh;
     background-color: rgba(0, 0, 0, 0.75);
-    padding: 1rem;
+    padding: 1vh 1vw;
     font-size: 100%;
     margin-bottom: 5vh;
 }

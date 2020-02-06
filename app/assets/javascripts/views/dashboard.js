@@ -121,8 +121,17 @@ const updateQuestionNumber = (newNumber) => {
     $('#question-number').text(newNumber)
 }
 
-const dashboardTimer = (count) => {
-  console.log(count);
+const dashboardTimer = (t) => {
+    if (t === 8) {
+        $('#question-display').before('<p id="timer">08</p>');
+    } else {
+        $('#timer').text(`0${t}`);
+    }
+    if (t === 0) {
+        setTimeout( () => {
+            $('#timer').remove();
+        }, 500);
+    }
 }
 
 //extra
