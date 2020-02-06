@@ -14,8 +14,7 @@ App.host = App.cable.subscriptions.create("HostChannel", {
       sendQuestion(data["question"]);
 
     } else if (data["correct_answer"]){
-      sendAnswer(data["correct_answer"]);
-      // sendCorrectPlayers(data['correct_players']);
+      sendAnswer(data["correct_answer"], data['correct_players']);
 
     } else if (data["player"]) {
       addDashboardPlayerPortrait(new Player(data["player"]), data["count"]);
