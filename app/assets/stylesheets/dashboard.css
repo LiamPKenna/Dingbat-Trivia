@@ -26,40 +26,14 @@
     color: #D38B5D;
 }
 
-
-#waiting {
-    /* animation: 4s pulse linear infinite; */
-    font-size: 2vh;
+#room-number, #waiting {
+    font-size: 4vh;
+    text-align: center;
+    margin-bottom: 5vh;
 }
-/* @keyframes pulse {
-    0% { color: red; font-size: 2vh;}
-    7% { color: red; font-size: 2vh;}
-    10% {color: red; font-size: 2.6vh;}
-    13% {color: red; font-size: 2vh;}
-    17% {color: red; font-size: 2vh;}
-    20% {color: red; font-size: 2.2vh;}
-    23% {color: red; font-size: 2vh;}
-    27% {color: red; font-size: 2vh;}
-    30% {color: blue; font-size: 2.6vh;}
-    33% {color: blue; font-size: 2vh;}
-    37% {color: blue; font-size: 2vh;}
-    20% {color: red; font-size: 2.2vh;}
-    23% {color: red; font-size: 2vh;}
-    27% {color: red; font-size: 2vh;}
-    30% {color: red; font-size: 2.2vh;}
-    20% {color: red; font-size: 2.6vh;}
-    23% {color: red; font-size: 2vh;}
-    27% {color: red; font-size: 2vh;}
-    30% {color: red; font-size: 2.2vh;}
-    20% {color: red; font-size: 2.6vh;}
-    23% {color: red; font-size: 2vh;}
-    27% {color: red; font-size: 2vh;}
-    30% {color: red; font-size: 2.2vh;}
-    20% {color: red; font-size: 2.6vh;}
-    23% {color: red; font-size: 2vh;}
-    27% {color: red; font-size: 2vh;}
-    30% {color: red; font-size: 2.2vh;}
-} */
+#waiting {
+    font-style: italic;
+}
 
 #player-column-1, #player-column-2 {
     display: flex;
@@ -79,8 +53,8 @@
 
 .player-portrait {
     z-index: 5;
-    height: 20vh;
-    width:  20vh;
+    height: 18vh;
+    width:  18vh;
     text-align: center;
     display: flex;
     align-items: center;
@@ -94,12 +68,21 @@
 .spin-up {
     animation: 350ms spinUp linear 1;
 }
+
 @keyframes wiggle {
     0%, 100% {transform: rotateZ(-8deg);}
     50% {transform: rotateZ(8deg);}
 }
 .wiggle {
     animation: 25s wiggle linear infinite;
+}
+
+@keyframes jitter {
+    0%, 100% {transform: rotateZ(-2deg) scale(0.6);}
+    50% {transform: rotateZ(2deg) scale(0.6);}
+}
+.jitter {
+    animation: 200ms jitter linear infinite;
 }
 
 .player-portrait div {
@@ -111,8 +94,8 @@
     padding: 1vh 1vh;
 }
 .player-portrait img {
-    width: 10vh;
-    max-height: 10vh;
+    width: 8vh;
+    height: 8vh;
     border-radius: 50%;
     padding: 0.5vh;
     border: 0.2vh solid black;
@@ -133,6 +116,7 @@
     padding: 5vh 2vw;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 .q-slide {
     text-align: center;
