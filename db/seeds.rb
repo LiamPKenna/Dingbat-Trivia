@@ -5,6 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Question.destroy_all
+Player.destroy_all
+Room.destroy_all
 
 questions = [
   {
@@ -238,6 +241,126 @@ questions = [
     "answer_2": "Aaron",
     "answer_3": "Adam",
     "answer_4": "Abraham"
+  },
+  {
+    "question": "Which Matrix actor also portrayed the masked vigilantes in the cult classic V for Vendetta?",
+    "correct_answer": 3,
+    "answer_1": "Kenanu Reeves",
+    "answer_2": "Laurence Fishburne",
+    "answer_3": "Hugo Weaving",
+    "answer_4": "Carrie-Anne Moss"
+  },
+  {
+    "question": "What is the longest that an elephant has lived?",
+    "correct_answer": 1,
+    "answer_1": "86 Years",
+    "answer_2": "49 Years",
+    "answer_3": "142 Years",
+    "answer_4": "98 Years"
+  },
+  {
+    "question": "How many rings are on the Olympic flag?",
+    "correct_answer": 4,
+    "answer_1": "Six",
+    "answer_2": "Four",
+    "answer_3": "Seven",
+    "answer_4": "Five"
+  },
+  {
+    "question": "What is the most commonly consumed beverage after water in the world",
+    "correct_answer": 3,
+    "answer_1": "Milk",
+    "answer_2": "Coffee",
+    "answer_3": "Tea",
+    "answer_4": "Soda"
+  },
+  {
+    "question": "What is the top speed of a bat?",
+    "correct_answer": 4,
+    "answer_1": "70 mph",
+    "answer_2": "100 mph",
+    "answer_3": "30 mph",
+    "answer_4": "60 mph"
+  },
+  {
+    "question": "How many mosquitoes can a bat eat an hour?",
+    "correct_answer": 2,
+    "answer_1": "100",
+    "answer_2": "1200",
+    "answer_3": "1000",
+    "answer_4": "987"
+  },
+  {
+    "question": "Where is home to the largest bat colony?",
+    "correct_answer": 1,
+    "answer_1": "Texas, United States",
+    "answer_2": "Fortaleza, Brazil",
+    "answer_3": "Delhi, India",
+    "answer_4": "Prague, Czech Republic"
+  },
+  {
+    "question": "In darts, what's the most points you can score with a single throw?",
+    "correct_answer": 2,
+    "answer_1": "35",
+    "answer_2": "60",
+    "answer_3": "50",
+    "answer_4": "40"
+  },
+  {
+    "question": "Which of these animals does NOT appear in the Chinese zodiac?",
+    "correct_answer": 1,
+    "answer_1": "Bear",
+    "answer_2": "Rat",
+    "answer_3": "Boar",
+    "answer_4": "Dog"
+  },
+  {
+    "question": "How many points is the letter X worth in English-language Scrabble?",
+    "correct_answer": 2,
+    "answer_1": "5",
+    "answer_2": "8",
+    "answer_3": "11",
+    "answer_4": "12"
+  },
+  {
+    "question": "What is the world’s second tallest mountain?",
+    "correct_answer": 2,
+    "answer_1": "Kilimanjaro in Japan",
+    "answer_2": "Aconcagua in Argentina",
+    "answer_3": "Monut McKinley in Alaska",
+    "answer_4": "Mount Logan in Canada"
+  },
+  {
+    "question": "What is the world’s largest shark?",
+    "correct_answer": 4,
+    "answer_1": "Basking Shark",
+    "answer_2": "Great White",
+    "answer_3": "Pacific Sleeper Shark",
+    "answer_4": "Whale Shark"
+  },
+  {
+    "question": "What actress helped develop the radio controlled missile?",
+    "correct_answer": 3,
+    "answer_1": "Veronica Lake",
+    "answer_2": "Elizabeth Taylor",
+    "answer_3": "Hedy Lamarr",
+    "answer_4": "Marilyn Monroe"
+  },
+  {
+    "question": "Who invented hot cocoa?",
+    "correct_answer": 1,
+    "answer_1": "The Mayans",
+    "answer_2": "The Swiss",
+    "answer_3": "The Germans",
+    "answer_4": "The Incans"
+  },
+  {
+    "question": "What’s the name of the world’s largest active Geyser?",
+    "correct_answer": ,
+    "answer_1": "Castle Geyser",
+    "answer_2": "Old Faithful",
+    "answer_3": "Fly Geyser",
+    "answer_4": "Steamboat Geyser"
   }
 ]
 
