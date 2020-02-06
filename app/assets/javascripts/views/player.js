@@ -1,30 +1,20 @@
 const playerQuestion = (questionOptions, playerID) => {
   return (
     `
-    <form id='question-form'>
       <div id='input-options'>
       ${
         questionOptions.map(
           (option, index) => {
-            return playerQuestionLabel(option, index, playerID);
+            return playerQuestionLabel(option, index);
           }
         ).join('\n')
       }
       </div>
-    </form>
     `
   );
 }
-const playerQuestionLabel = (text, index, playerID) => {
-  return (
-    `
-    <button type="button" class="answer-go" name="button" value='${index + 1}'>${text}</button>
-    `
-    // <label class='radio-button'>
-    // <input type='radio' name='player-answer' value='${index + 1}'>
-    //   <p class='option-text'>${text}</p>
-    // </label>
-  );
+const playerQuestionLabel = (text, index) => {
+  return (`<button type="button" class="answer-go" value='${index + 1}'>${text}</button>`);
 }
 
 //verbs

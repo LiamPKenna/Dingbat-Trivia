@@ -48,6 +48,11 @@ const winnerDisplay = (arr) => {
 }
 
 //verbs
+const playerSubmitted = (id) => {
+    submitter = $(`#portrait-${id}`);
+    submitter.removeClass('wiggle');
+    submitter.addClass('jitter');
+}
 const sendQuestion = (questionText) => {
     qDisplay = $('#question-display');
     qDisplay.empty();
@@ -62,6 +67,8 @@ const sendQuestion = (questionText) => {
     }, 1750);
 }
 const sendAnswer = (answerText) => {
+    $('.player-portrait').removeClass('jitter');
+    $('.player-portrait').addClass('wiggle');
     const question = $('#question');
     question.removeClass('q-hover');
     question.addClass('q-flick');
