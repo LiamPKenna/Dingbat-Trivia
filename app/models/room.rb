@@ -53,12 +53,15 @@ class Room < ApplicationRecord
 
   def check_player_answers(correct_answer)
     correct_answers = []
+    wrong_answers = []
     self.players.each do |player|
       if player.check_answer(correct_answer) == true
         correct_answers.push(player)
+      else
+        wrong_answers.push(player)
       end
     end
-    correct_answers
+    [correct_answers.map { |c| c.id }, wrong_answers.map { |c| c.id }]
   end
 
   def next_question
@@ -107,7 +110,7 @@ class Room < ApplicationRecord
     @correct = check_player_answers(@question.correct_answer)
     HostChannel.broadcast_to("room_host_#{self.id}",
       correct_answer: @question["answer_#{@question.correct_answer}"],
-      correct_players: @correct.map { |c| c.id }
+      correct_players: @correct
     )
     wait(5)
     updateScores()
