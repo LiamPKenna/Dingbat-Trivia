@@ -9,7 +9,7 @@ App.host = App.cable.subscriptions.create("HostChannel", {
 
   received: function(data) {
     if (data["selected"]) {
-
+      playerSubmitted(data["selected"]);
     } else if (data["question"]) {
       sendQuestion(data["question"]);
 
@@ -23,16 +23,15 @@ App.host = App.cable.subscriptions.create("HostChannel", {
       updatePlayerScore(data["update_score"]["id"], data["update_score"]["score"]);
 
     } else if (data["countdown"]) {
+      questionCountdown(8);
       setTimeout(function () {
         App.host.perform("end_question", {
           room_id: data["countdown"]["room_id"],
           loop_number: data["countdown"]["loop_number"]
         });
-      }, 10000);
-
+      }, 8000);
     } else if (data["winner"]){
       sendWinners(data["winner"]);
-
     }
   },
 
@@ -48,3 +47,12 @@ App.host = App.cable.subscriptions.create("HostChannel", {
     App.host.perform("ask_question", {room_id: room_id});
   }
 });
+
+const questionCountdown = (count) => {
+  dashboardTimer(count);
+  setTimeout(function () {
+    if (count > 0) {
+      return questionCountdown(count - 1)
+    }
+  }, 1000);
+}
