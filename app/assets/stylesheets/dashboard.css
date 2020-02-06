@@ -52,7 +52,6 @@
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
-    z-index: 10;
 }
 
 
@@ -64,7 +63,6 @@
 }
 
 .player-portrait {
-    z-index: 5;
     height: 18vh;
     width:  18vh;
     text-align: center;
@@ -134,7 +132,6 @@
     text-align: center;
     animation: 1.75s slideBy linear 1;
     font-size: 4vh;
-    z-index: 1;
     font-family: 'Fresca', sans-serif;
 }
 @keyframes slideBy {
@@ -149,7 +146,6 @@
     text-align: center;
     font-size: 5vh;
     transform: rotateZ(-4deg);
-    z-index: 100;
     font-family: 'Fresca', sans-serif;
 }
 .q-smack {
