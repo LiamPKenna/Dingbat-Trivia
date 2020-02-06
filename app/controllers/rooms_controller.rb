@@ -37,7 +37,6 @@ class RoomsController < ApplicationController
         updated_params[:player_icon] = "/bat#{@room.get_image_number}.png"
         updated_params[:player_color] = "#{rand(0..255)} #{rand(0..255)} #{rand(0..255)}"
         @player = Player.create!(updated_params)
-        HostChannel.broadcast_to("room_host_#{@room.id}", selected: @player.id)
         @room.push_player(@player)
         redirect_to "/rooms/#{@room.id}/players/#{@player.id}"
       else

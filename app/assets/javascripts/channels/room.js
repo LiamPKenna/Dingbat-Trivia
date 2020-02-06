@@ -18,7 +18,7 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
     if (data['blank']) {
       $('#start-game').remove();
       $('#waiting').remove();
-      $('#question-form').remove();
+      removePlayerQuestion();
     }
   },
 

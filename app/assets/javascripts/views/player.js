@@ -24,7 +24,7 @@ const demoPlayerQuestion = (playerName, playerID) => {
 }
 
 const removePlayerQuestion = () => {
-  $('#question-form').remove();
+  $('#input-options').remove();
 }
 const addPlayerAnswers = (answers, playerID) => {
   removePlayerQuestion();
