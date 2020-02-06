@@ -54,12 +54,19 @@ const winnerDisplay = (arr) => {
 }
 
 //verbs
+const resetPortraits = () => {
+    portraits = $('.player-portrait');
+    portraits.removeClass('jitter');
+    portraits.removeClass('spinny');
+    portraits.addClass('wiggle');
+}
 const playerSubmitted = (id) => {
     submitter = $(`#portrait-${id}`);
     submitter.removeClass('wiggle');
     submitter.addClass('jitter');
 }
 const sendQuestion = (questionText) => {
+    resetPortraits();
     qDisplay = $('#question-display');
     qDisplay.empty();
     qDisplay.prepend(dashboardQuestionSlide);
@@ -73,9 +80,8 @@ const sendQuestion = (questionText) => {
         }, 400);
     }, 1750);
 }
-const sendAnswer = (answerText) => {
-    $('.player-portrait').removeClass('jitter');
-    $('.player-portrait').addClass('wiggle');
+const sendAnswer = (answerText, arr) => {
+    resetPortraits();
     const question = $('#question');
     question.removeClass('q-hover');
     question.addClass('q-flick');
@@ -83,6 +89,11 @@ const sendAnswer = (answerText) => {
         question.remove();
         tap.play();
         $('#question-display').prepend(dashboardAnswerSwirl(`A: ${answerText}`));
+        setTimeout( () => {
+            arr[0].forEach( (p) => {
+                $(`#portrait-${p}`).addClass('spinny');
+            });
+        }, 500);
     }, 500);
     setTimeout( () => {
         $('#answer').remove();
