@@ -111,7 +111,8 @@
     border: 0.2vh solid black;
 }
 .player-portrait h2 {
-    font-size: 4vh;
+    font-size: 3.5vh;
+    overflow: hidden;
 }
 
 .player-portrait p {

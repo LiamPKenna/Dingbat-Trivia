@@ -112,8 +112,9 @@ class Room < ApplicationRecord
       correct_answer: @question["answer_#{@question.correct_answer}"],
       correct_players: @correct
     )
-    wait(5)
+    wait(1)
     updateScores()
+    wait(4)
     if loop_number.to_i >= 8
       end_game()
     else
