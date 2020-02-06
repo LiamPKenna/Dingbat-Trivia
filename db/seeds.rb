@@ -356,7 +356,7 @@ questions = [
   },
   {
     "question": "What’s the name of the world’s largest active Geyser?",
-    "correct_answer": ,
+    "correct_answer": 4,
     "answer_1": "Castle Geyser",
     "answer_2": "Old Faithful",
     "answer_3": "Fly Geyser",
