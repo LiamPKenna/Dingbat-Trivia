@@ -32,6 +32,9 @@ App.host = App.cable.subscriptions.create("HostChannel", {
       }, 8000);
     } else if (data["winner"]){
       sendWinners(data["winner"]);
+
+    } else if (data["kill"]) {
+      App.host.perform("kill");
     }
   },
 

@@ -14,4 +14,8 @@ class HostChannel < ApplicationCable::Channel
     @room = Room.find(data['room_id'])
     @room.end_question(data['loop_number'])
   end
+
+  def kill
+    stop_all_streams
+  end
 end

@@ -14,11 +14,12 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
     if (data['answers']) {
       const answers = hashToArray(data["answers"])
       addPlayerAnswers(answers, playerID)
-    }
-    if (data['blank']) {
+    } else if (data['blank']) {
       $('#start-game').remove();
       $('#waiting').remove();
       removePlayerQuestion();
+    } else if (data['kill']) {
+      App.room.perform("kill");
     }
   },
 

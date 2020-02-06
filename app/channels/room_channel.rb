@@ -21,4 +21,8 @@ class RoomChannel < ApplicationCable::Channel
     RoomChannel.broadcast_to(@room, blank: true)
     @room.start_game
   end
+
+  def kill
+    stop_all_streams
+  end
 end

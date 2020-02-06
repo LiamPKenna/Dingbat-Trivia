@@ -128,5 +128,7 @@ class Room < ApplicationRecord
     }
     end
     HostChannel.broadcast_to("room_host_#{self.id}", winner: winner)
+    HostChannel.broadcast_to("room_host_#{self.id}", kill: true)
+    RoomChannel.broadcast_to(self, kill: true)
   end
 end
