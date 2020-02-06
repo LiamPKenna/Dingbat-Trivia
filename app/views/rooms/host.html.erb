@@ -36,8 +36,12 @@
 <script>
     $(document).ready(function() {
         const roomID = <%= @room.id %>;
+        const theme = new Audio('/mp3/theme.mp3');
         setTimeout(function () {
             App.host.host(parseInt(roomID));
+            theme.loop = true;
+            theme.volume = 0.8;
+            theme.play();
         }, 1000);
 
         <% if @room.players.any? %>
