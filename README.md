@@ -21,7 +21,7 @@ _The game is best enjoyed with the "room" hosted on a large screen and players j
 
 * _Click "Create Room". This device will become the "host" and display the game. If you as the "Host" would like to play, please follow the steps below on another device such as your mobile, laptop, or even another window._
 
-* _Once being assigned a room number (found on the "Host" screen), Players should click the "Join Room" button, enter the room number given, and create their nickname for the game."_
+* _Once assigned a room number (found on the "Host" screen), Players should click the "Join Room" button, enter the room number given, and create their nickname for the game."_
 
 * _After players have joined the room, they will all have a prompt on their devices saying "everybody is here!". Any player may click this button, but be ready! Once this button is clicked, the game begins!_
 
