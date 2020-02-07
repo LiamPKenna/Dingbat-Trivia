@@ -27,7 +27,7 @@ _The game is best enjoyed with the "room" hosted on a large screen and players j
 
 ## Known Bugs
 
-_No major bugs have been reported at this time. We have observed some small display issues and intend to solve them in the near future. Core functioning and game play is working as intended and will be continually updated to improve the player experience. See below on how you can help us keep this game fun and accessible!_
+_No major bugs have been reported at this time. We have observed some small display issues and intend to solve them in the near future. Core functioning and game play are working as intended and will be perennially updated to improve the player experience. See below on how you can help us keep this game fun and accessible!_
 
 ## Support and contact details
 
