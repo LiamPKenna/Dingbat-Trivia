@@ -171,7 +171,7 @@ questions = [
     "answer_4": "30"
   },
   {
-    "question": "It is estimated that millions of trees world wide are accidentally planted by which species",
+    "question": "It is estimated that millions of trees world wide are accidentally planted by which species?",
     "correct_answer": 2,
     "answer_1": "Elephants",
     "answer_2": "Squirrels",
@@ -253,7 +253,7 @@ questions = [
   {
     "question": "Which Matrix actor also portrayed the masked vigilantes in the cult classic V for Vendetta?",
     "correct_answer": 3,
-    "answer_1": "Kenanu Reeves",
+    "answer_1": "Keanu Reeves",
     "answer_2": "Laurence Fishburne",
     "answer_3": "Hugo Weaving",
     "answer_4": "Carrie-Anne Moss"
