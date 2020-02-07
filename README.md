@@ -1,37 +1,42 @@
-# _DingBat Trivia Game_
+# _DingBat Trivia_
+![logo](/public/img/dingbat.gif)
 
-#### _This is a browser based party game designed to be enjoyed on mobile, desktop and other portable devices, 2/6/2020._
+#### _This is a browser based party game designed to be enjoyed on mobile/portable devices and desktop, 2/6/2020._
 
 #### By _**Liam Kenna, Jaime Gensler, Angela Weber, Brett Cordell**_
 
 ## Description
 
-_Multi-player trivia game. Background animation inspired by: https://codepen.io/akashnimare/pen/sjmbB._
+_Dingbat Trivia is a multi-player trivia game (inspired by [Jackbox](https://jackboxgames.com/)) built in 3.5 days._
 
-## Accessing And Playing "DingBat"
+_Sunburst background animation was inspired by: https://codepen.io/akashnimare/pen/sjmbB. Bat drawings are by each member of the development team, sounds/music are by Liam._
 
-* _First, head to Dingbat-trivia.herokuapp.com to access and run the application._
+_The game is best enjoyed with the "room" hosted on a large screen and players joining on their personal devices._
 
-* _Now, click "Create Room". This device will become the "host" and display the game. If you as the "Host" would like to play, please follow the steps below on another device such as your mobile, or laptop or even another window._
+## Accessing And Playing __DingBat Trivia__
 
-* _Once being assigned a room number (found on the "Host" screen) have players click the "Join Room" button, and enter the room number given, players may also create their nickname here as well."_
+* _Navigate to Dingbat-trivia.herokuapp.com to access and run the application._
 
-* _Now that all the players have entered the room number found on the "host" screen, and created their nickname, players will all have a prompt on their own devices saying "everybody is here!". Any player may click this button, but we ready! Once this button is clicked, the game begins!_
+* _Click "Create Room". This device will become the "host" and display the game. If you as the "Host" would like to play, please follow the steps below on another device such as your mobile, laptop, or even another window._
+
+* _Once being assigned a room number (found on the "Host" screen), Players should click the "Join Room" button, enter the room number given, and create their nickname for the game."_
+
+* _After players have joined the room, they will all have a prompt on their devices saying "everybody is here!". Any player may click this button, but be ready! Once this button is clicked, the game begins!_
 
 ## Known Bugs
 
-_Any this time, there are some small css interactions taking place that are being looked into at this time. Core functioning and game play however is working as intended, and will be continued to be updated to improve the player experience. See below on how to help us keep this game fun and accessible!_
+_Know major bugs have been reported at this time. We have observed some small display issues and intend to solve them in the near future. Core functioning and game play is working as intended and will be continually updated to improve the player experience. See below on how you can help us keep this game fun and accessible!_
 
 ## Support and contact details
 
-_Please send feedback, or general inquiries to team-emails@gmail.com. Our team will do our best to respond to messages  and feedback we receive. This is an ideal place to send concerns about accessibility, bugs and other general questions about the application and the team._
+_Please send feedback, or general inquiries to liam@liamkenna.com. Our team appreciates the messages and feedback we receive and will do our best to get back to you promptly. We would love to hear your concerns about accessibility, bugs and other general questions about the application and the team._
 
 ## Technologies Used
 
-__
+_Ruby, Rails, PostgreSQL, Action Cable, JavaScript, CSS, HTML, Ableton_
 
 ### License
 
-*This software is licensed under the MIT license.*
+*This software is available under the MIT license.*
 
 Copyright (c) 2020 **_Liam Kenna, Jaime Gensler, Angela Weber, Brett Cordell_**
