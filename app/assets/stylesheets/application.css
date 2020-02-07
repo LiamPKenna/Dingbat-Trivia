@@ -14,34 +14,41 @@
  *= require_self
  */
 
- body {
-     padding: 0;
-     margin: 0;
- }
- h1, h2, h3, h4, h5, h6 {
-     padding: 0;
-     margin: 0;
- }
+body {
+   padding: 0;
+   margin: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+   padding: 0;
+   margin: 0;
+}
 
- html, body {
-     height: 100%;
- }
+html, body {
+   height: 100%;
+}
 
- * {
-     box-sizing: border-box;
- }
+* {
+   box-sizing: border-box;
+}
 
- p {
-     margin: 0;
- }
+p {
+   margin: 0;
+}
 
- ul {
-     margin:0;
- }
+ul {
+   margin:0;
+}
 
- h1 {
-    font-family: 'Acme', sans-serif;
- }
- h2, h3 {
-     font-family: 'Fresca', sans-serif;
- }
+h1 {
+  font-family: 'Acme', sans-serif;
+}
+h2, h3 {
+   font-family: 'Fresca', sans-serif;
+}
+
+.alert {
+  text-align: center;
+  background-color: #e8e8e8;
+  padding: 5px;
+  font-weight: bold;
+}

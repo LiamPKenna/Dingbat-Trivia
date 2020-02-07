@@ -12,7 +12,9 @@
   </head>
 
   <body>
-    <%= flash[:alert] %>
+    <div class="alert">
+      <%= flash[:alert] %>
+    </div>
     <%= yield %>
   </body>
 </html>
