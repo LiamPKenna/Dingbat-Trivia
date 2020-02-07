@@ -45,6 +45,11 @@ class Room < ApplicationRecord
     end
   end
 
+  def ready
+    self.ready_for_next = true
+    self.save
+  end
+
   def reset_players
     self.players.each do |player|
       player.reset
@@ -91,6 +96,8 @@ class Room < ApplicationRecord
 
   # GAME LOGIC
   def start_game
+    self.ready_for_next = false
+    self.save()
     reset_players()
     updateScores()
     get_question_list()
@@ -134,5 +141,7 @@ class Room < ApplicationRecord
     HostChannel.broadcast_to("room_host_#{self.id}", winner: winner)
     HostChannel.broadcast_to("room_host_#{self.id}", kill: true)
     RoomChannel.broadcast_to(self, kill: true)
+    self.players.each { |p| p.destroy }
+    self.destroy
   end
 end
