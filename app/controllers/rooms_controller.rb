@@ -9,26 +9,40 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @player = Player.find(params[:id])
-    @room = Room.find(params[:room_id])
+    begin
+      @player = Player.find(params[:id])
+      @room = Room.find(params[:room_id])
+      render :show
+    rescue ActiveRecord::RecordNotFound => e
+      flash[:alert] = "Room does not exist"
+      puts e
+      render :join
+    end
   end
 
   def host
-    @room = Room.find(params[:room_id])
+    begin
+      @room = Room.find(params[:room_id])
+      render :host
+    rescue ActiveRecord::RecordNotFound => e
+      flash[:alert] = "Room does not exist"
+      puts e
+      render :new
+    end
   end
 
   def create
-
     @room = Room.create!( image_numbers: (1..8).to_a.shuffle!.join(',') )
+    @room.ready()
     redirect_to "/rooms/#{@room.id}"
   end
 
   def new_player
-
     begin
       @room = Room.find(params[:player][:room_id])
     rescue ActiveRecord::RecordNotFound => e
       @room = nil
+      puts e
     end
     if @room
       if @room.players.length < 8
