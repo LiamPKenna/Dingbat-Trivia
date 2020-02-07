@@ -1,61 +1,65 @@
 <style>
-    <% colors = @player.player_color.split(' ').map(&:to_i) %>
-    body {
-        background-image: linear-gradient(
-            rgba(<%= colors[0] %>, <%= colors[1] %>, <%= colors[2] %>, 0.65),
-            rgba(<%= colors[0] %>, <%= colors[1] %>, <%= colors[2] %>, 0.65)
-        );
-    }
-    main {
-        width: 80%;
-        margin: 0 auto;
-    }
-    #player-header h1 {
-        font-size: <%= 12 - 0.4*(@player.name.length) %>vh;
-        line-height: <%= 12 - 0.4*(@player.name.length) %>vh;
-    }
-    #start-game p {
-        background-image: linear-gradient(
-            to right,
-            rgb(<%= [colors[0] + 10, 255].min %>, <%= [colors[1] + 10, 255].min %>, <%= [colors[2] + 10, 255].min %>),
-            rgb(<%= [colors[0] - 80, 0].max %>, <%= [colors[1] - 80, 0].max %>, <%= [colors[2] - 80, 0].max %>),
-            rgb(<%= [colors[0] + 10, 255].min %>, <%= [colors[1] + 10, 255].min %>, <%= [colors[2] + 10, 255].min %>),
-            rgb(<%= [colors[0] - 80, 0].max %>, <%= [colors[1] - 80, 0].max %>, <%= [colors[2] - 80, 0].max %>)
-        );
-    }
+  <% colors = @player.player_color.split(' ').map(&:to_i) %>
+  body {
+    background-image: linear-gradient(
+      rgba(<%= colors[0] %>, <%= colors[1] %>, <%= colors[2] %>, 0.65),
+      rgba(<%= colors[0] %>, <%= colors[1] %>, <%= colors[2] %>, 0.65)
+    );
+  }
+  main {
+    width: 80%;
+    margin: 0 auto;
+  }
+  #player-header h1 {
+    font-size: <%= 12 - 0.4*(@player.name.length) %>vh;
+    line-height: <%= 12 - 0.4*(@player.name.length) %>vh;
+  }
+  #start-game p {
+    background-image: linear-gradient(
+      to right,
+      rgb(<%= [colors[0] + 10, 255].min %>, <%= [colors[1] + 10, 255].min %>, <%= [colors[2] + 10, 255].min %>),
+      rgb(<%= [colors[0] - 80, 0].max %>, <%= [colors[1] - 80, 0].max %>, <%= [colors[2] - 80, 0].max %>),
+      rgb(<%= [colors[0] + 10, 255].min %>, <%= [colors[1] + 10, 255].min %>, <%= [colors[2] + 10, 255].min %>),
+      rgb(<%= [colors[0] - 80, 0].max %>, <%= [colors[1] - 80, 0].max %>, <%= [colors[2] - 80, 0].max %>)
+    );
+  }
 </style>
 
 <header id='player-header'>
-    <h1><%= @player.name %></h1>
+  <h1><%= @player.name %></h1>
 </header>
 
 <main>
+  <% if @room.ready_for_next %>
     <button id='start-game' type='button'>
-        <p>Everybody's<br>Here!</p>
+      <p>Everybody's<br>Here!</p>
     </button>
+  <% end %>
 </main>
 
 <script type='text/jscript'>
-    const playerID = <%= @player.id %>;
-    const woosh = new Audio('/mp3/whoosh.mp3');
-    $(document).ready(function() {
-        const roomID = <%= @room.id %>;
-        setTimeout(function () {
-            App.room.hook_up(parseInt(roomID));
-        }, 1000);
+  const playerID = <%= @player.id %>;
+  const woosh = new Audio('/mp3/whoosh.mp3');
+  $(document).ready(function() {
+    const roomID = <%= @room.id %>;
+    setTimeout(function () {
+        App.room.hook_up(parseInt(roomID));
+    }, 1000);
 
-      $('#start-game').click(() => {
-          App.room.start_game(roomID);
-          $('#start-game').remove();
-      });
-
-      $("main").on('click', ".answer-go", function(event) {
-        console.log(parseInt($(event.target).val()));
-          const selected = parseInt($(event.target).val());
-          woosh.play();
-          App.room.submit_answer({"id":playerID, "selected":selected});
-          removePlayerQuestion();
-      });
-
+    $('#start-game').click(() => {
+      <% if @room.ready_for_next %>
+        App.room.start_game(roomID);
+      <% end %>
+      $('#start-game').remove();
     });
+
+    $("main").on('click', ".answer-go", function(event) {
+      console.log(parseInt($(event.target).val()));
+      const selected = parseInt($(event.target).val());
+      woosh.play();
+      App.room.submit_answer({"id":playerID, "selected":selected});
+      removePlayerQuestion();
+    });
+
+  });
 </script>
