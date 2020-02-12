@@ -57,3 +57,14 @@
     <button type="submit" id="join_button_size" name="button">Join Room!</button>
   </form>
   </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    $('#join_form').submit(() => {
+      $('#join_button_size').prop('disabled', true);
+      $('#join_button_size').fadeOut();
+    });
+
+  });
+</script>
